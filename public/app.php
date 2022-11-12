@@ -74,6 +74,7 @@ $router->get('/home/admin', function () {
 
 $router->add_not_found_handler(function () {
     require __DIR__ . '/views/notfound.phtml';
+    echo __DIR__;
 });
 
 
