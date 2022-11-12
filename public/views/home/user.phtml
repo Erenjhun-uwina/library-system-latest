@@ -1,0 +1,119 @@
+<?php
+$view = new UserView;
+$bview = new BookView;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../src/js/regis_forms.js" defer></script>
+    <script src="../src/js/change_pass.js" defer></script>
+    <script src="../src/js/logout.js" defer></script>
+    <script src="../src/js/book_prev.js" defer></script>
+    <script src="../src/js/search.js" defer></script>
+</head>
+
+<body>
+    <nav id="top_nav">
+
+        <div id="search_con">
+            <input id="book_search" type="text" placeholder="search" name="book_search">
+
+            <div id="search_res">
+
+            </div>
+        </div>
+
+
+        <p>School logo</p>
+        <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
+        <p class="nav_button"><i class="fa-regular fa-envelope"></i></p>
+        <p id="menu" class="nav_button"><i class="fa-solid fa-ellipsis-vertical"></i>
+        <div id="menu_opt_con">
+            <p id="about_us">about us</p>
+            <p id="logout">logout</p>
+            <p id="update_pass">update password</p>
+        </div>
+        </p>
+    </nav>
+
+    <nav id="side_nav">
+        <div>
+            <span><?php echo $view->full_name($_SESSION['id']) ?></span>
+        </div>
+    </nav>
+
+    <h2>recomended</h2>
+    <div id="recommended_container" class="card_con">
+        <?php $bview->new_release_books() ?>
+    </div>
+
+    <div id="new_release_container" class="card_con book_btn">
+        <?php $bview->new_release_books() ?>
+    </div>
+
+    <div id="new_container" class="card_con book_btn">
+        <?php $bview->new_books() ?>
+    </div>
+
+    <!-- hidden sections -->
+    <section id="book_preview" class="regis_form_con">
+
+        <form>
+            <section class="card_con">
+                <div class="card">
+                    <img id="book_prev_img" src="">
+                </div>
+                <div id="book_main_details">
+                    <p id="book_prev_title"> sample title </p>
+                    <p id="book_prev_author">(author)</p>
+                    <p id="book_prev_date">2020-11-29</p><br>
+                    <p id="book_prev_summary">summary</p>
+
+                </div>
+                <div id="book_main_button">
+                    <button>burrow</button>
+                </div>
+            </section>
+            <hr>
+            <div id="book_related">
+                <p>Related books...</p><br>
+            </div>
+
+
+            <section id="book_recomendation" class="card_con">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
+                </div>
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
+                </div>
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
+                </div>
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
+                </div>
+            </section>
+        </form>
+    </section>
+
+
+    <section id="change_pass" class="regis_form_con">
+        <form>
+            <span><?php echo $view->Username($_SESSION['id']) ?></span><br>
+            <input type="text" placeholder="Old password" name="old_pass" required><br>
+            <input type="password" placeholder="New password" name="new_pass" required><br>
+            <input type="password" placeholder="Confirm password" name="pass" required><br>
+            <button type="submit">Update</button>
+        </form>
+    </section>
+
+</body>
+
+</html>
