@@ -49,25 +49,28 @@ class StaffCtrl extends Model
         }
     }
 
-
-
-    public function update(string $FN, string $LN, string $Pass, $Uname, $id)
+    public function update()
     {
         try {
             $this->open();
-            $query = $this->conn->prepare("
-            UPDATE `staffs` SET `FN`=?,`LN`=?,,`Password`=?,`Username`=? WHERE `Id` =? ");
 
-            $query->bind_param("sssss", $FN, $LN, $Pass, $Uname, $id);
+
+            $args = func_get_args();
+           
+            $field = array_shift($args);
+            $val = $args;
+            
+            $query = $this->conn->prepare("UPDATE `staffs` SET $field WHERE `Id` =? ");
+
+            $query->bind_param(str_repeat('s', count($val)), ...$val);
             $query->execute();
-
             $this->kill();
         } catch (Exception $err) {
-
             $this->kill();
             throw $err;
         }
     }
+
 
     public function delete($id)
     {
