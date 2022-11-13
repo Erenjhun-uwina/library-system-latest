@@ -17,8 +17,6 @@ let book_btns = document.querySelectorAll('.book_btn');
         book.onclick = () => {
             show_prev(book)
         }
-
-
     })
 })
 
