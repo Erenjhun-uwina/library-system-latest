@@ -63,18 +63,23 @@ $bview = new BookView;
 
     <!-- hidden sections -->
 
+    <section id="return_form"> 
         <form>
-        <input type="text" name="borrow_code" placeholder="Borrow code">
+            <input type="text" name="return_code" placeholder="Return code">
+            <button type="submit">Submit
+            </button>
+        </form>
+    </section>
+
+    <section id="borrow_form">
+        <form>
+            <input type="text" name="borrow_code" placeholder="Borrow code">
 
             <button type="submit">Submit
             </button>
         </form>
-        <form>
-        <input type="text" name="return_code" placeholder="Return code">
-            <button type="submit">Submit
-            </button>
-        </form>
-    <!--  -->
+    </section>
+    
     <section id="book_preview" class="regis_form_con">
 
         <form>
