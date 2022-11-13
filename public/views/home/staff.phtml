@@ -46,6 +46,18 @@ $bview = new BookView;
     </div>
 
     <!-- hidden sections -->
+
+    <form>
+        <input type="text" name="borrow_code" placeholder="Borrow code">
+
+        <button type="submit">Submit
+        </button>
+    </form>
+    <form>
+        <input type="text" name="return_code" placeholder="Return code">
+        <button type="submit">Submit
+        </button>
+    </form>
     <section id="book_preview" class="regis_form_con">
 
         <form>
@@ -86,7 +98,7 @@ $bview = new BookView;
             </section>
         </form>
     </section>
-     
+
     <section id="change_pass" class="regis_form_con">
         <form>
             <span><?php echo $view->Username($_SESSION['id']) ?></span><br>
@@ -96,7 +108,7 @@ $bview = new BookView;
             <button type="submit">Update</button>
         </form>
     </section>
-    
+
     <section id="user_regis" class="regis_form_con">
         <form class="regis_form">
             <h1>User Registration</h1>
@@ -114,13 +126,13 @@ $bview = new BookView;
     <section id="book_regis" class="regis_form_con">
         <form class="regis_form">
             <h1>Add Books</h1>
-            <hr>            
+            <hr>
             <input type="text" name="title" placeholder="Title">
             <input type="text" name="author" placeholder="Author"><br>
             <input type="text" name="date_release" placeholder="Date release(yyyy-mm-dd)">
             <input type="text" name="genre" placeholder="Genre"><br>
-            <label for ="cover_img" >cover image</label>
-            <input type="file" name="cover_img"  accept="image/*"><br>
+            <label for="cover_img">cover image</label>
+            <input type="file" name="cover_img" accept="image/*"><br>
             <input type="text" name="publisher" placeholder="Publisher">
             <input type="text" name="language" placeholder="Language"><br>
             <Button type="submit">Create</Button>

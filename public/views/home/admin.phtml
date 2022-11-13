@@ -9,7 +9,7 @@ $bview = new BookView;
 
 <head>
     <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
-    
+
     <meta charset="UTF-8">
 
     <title>Page title</title>
@@ -32,7 +32,7 @@ $bview = new BookView;
             <div id="search_res">
             </div>
         </div>
-        <img  class="nav_button" src="../src/assets/logo.png">
+        <img class="nav_button" src="../src/assets/logo.png">
         <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
         <p class="nav_button"><i class="fa-regular fa-envelope"></i></p>
         <p id="menu" class="nav_button"><i class="fa-solid fa-ellipsis-vertical"></i>
@@ -63,9 +63,17 @@ $bview = new BookView;
 
     <!-- hidden sections -->
 
-    <!-- @lim pagawa ng dalawang form  lagay mo nalang dito ako na mag ayos-->
+    <form>
+        <input type="text" name="borrow_code" placeholder="Borrow code">
 
-
+        <button type="submit">Submit
+        </button>
+    </form>
+    <form>
+        <input type="text" name="return_code" placeholder="Return code">
+        <button type="submit">Submit
+        </button>
+    </form>
     <!--  -->
     <section id="book_preview" class="regis_form_con">
 
@@ -107,7 +115,7 @@ $bview = new BookView;
             </section>
         </form>
     </section>
-    
+
     <section id="change_pass" class="regis_form_con">
         <form>
             <span><?php echo $aview->Username($_SESSION['id']) ?></span><br>
