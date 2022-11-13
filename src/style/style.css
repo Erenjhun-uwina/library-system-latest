@@ -231,6 +231,7 @@ hr {
 }
 
 
+
 #menu_opt_con{
     top: 4.5rem;
     right: .5rem;
@@ -239,6 +240,7 @@ hr {
     position: absolute;
     background: white;
     border-radius: 3px;
+    display: none;
 }
 
 #menu_opt_con p{
