@@ -1,10 +1,14 @@
-body{
+body {
     background-color: grey;
 }
-
-#h1{
+#nfound {
     background-color: white;
     color: rgb(75, 73, 73);
     font-style: normal;
-    font-weight: ;
+    justify-content: center;
+}
+
+#home {
+    justify-content: right;
+    
 }
