@@ -27,7 +27,14 @@ $bview = new BookView;
         <p class="nav_button"><img src="../src/assets/logo.png"></p>
         <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
         <p class="nav_button"><i class="fa-regular fa-envelope"></i></p>
-        <p class="nav_button"><i class="fa-solid fa-ellipsis-vertical"></i></p>
+        <p class="nav_button menu">
+            <i class="fa-solid fa-ellipsis-vertical menu"></i>
+        </p>
+        <div id="menu_opt_con">
+            <p id="about_us">about us</p>
+            <p id="logout">logout</p>
+            <p id="update_pass">update password</p>
+        </div>
     </nav>
     <nav id="side_nav">
         <div><span>Staff</span></div>
@@ -46,18 +53,29 @@ $bview = new BookView;
     </div>
 
     <!-- hidden sections -->
+    <section id="return_form" class="regis_form_con">
+        <form>
+            <h1>Return</h1>
+            <hr>
+            <input type="text" name="return_code" placeholder="Return code">
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </section>
 
-    <form>
-        <input type="text" name="borrow_code" placeholder="Borrow code">
+    <section id="borrow_form" class="regis_form_con">
+        <form>
+            <h1>Borrow</h1>
+            <hr>
+            <input type="text" name="borrow_code" placeholder="Borrow code">
 
-        <button type="submit">Submit
-        </button>
-    </form>
-    <form>
-        <input type="text" name="return_code" placeholder="Return code">
-        <button type="submit">Submit
-        </button>
-    </form>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </section>
+
     <section id="book_preview" class="regis_form_con">
 
         <form>
@@ -81,20 +99,8 @@ $bview = new BookView;
                 <p>Related books...</p><br>
             </div>
 
-
-            <section id="book_recomendation" class="card_con">
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
+            <section id="book_recomendation" class="card_con book_btn">
+                <?php $bview->related_searches() ?>
             </section>
         </form>
     </section>

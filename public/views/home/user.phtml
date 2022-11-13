@@ -89,13 +89,11 @@ $bview = new BookView;
                 <p>Related books...</p><br>
             </div>
 
-
-            <section id="book_recomendation" class="card_con  book_btn">
-                <?php $bview->new_books()?>
+            <section id="book_recomendation" class="card_con book_btn">
+               <?php $bview->related_searches()?>
             </section>
         </form>
     </section>
-
 
     <section id="change_pass" class="regis_form_con">
         <form>
