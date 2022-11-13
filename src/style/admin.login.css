@@ -36,6 +36,7 @@ form {
     margin: auto;
     position: absolute;
     z-index: -1;
+    transform: translateY(-2.5rem);
 }
 
 .container {
@@ -74,6 +75,6 @@ button {
 
 #logo {
 
-    width: 5rem;
+    width: 6rem;
 
 }

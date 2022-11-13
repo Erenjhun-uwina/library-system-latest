@@ -1,8 +1,6 @@
-* {
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
-}
+
+
+/* colors lang baguhin dito since ung ibang style asa admin.log.css na */
 
 body {
 
@@ -13,60 +11,14 @@ body {
 form {
 
     background-color: #dbcdb274;
-    margin: 10rem auto;
-    text-align: center;
-    border-radius: 10px;
-    padding: 2rem;
-    width: 20rem;
-    height: 25rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     box-shadow: .2rem .2rem #7f542e;
-
 }
 
-#loginbg {
 
-    width: 8rem;
-    position: absolute;
-
-}
-
-.container {
-
-    background-color: none;
-}
-
-input {
-
-    margin-bottom: .5rem;
-    border-radius: 5px;
-    border: none;
-    font-size: .7rem;
-    overflow: hidden;
-    height: 2rem;
-    width: 15rem;
-    outline: none;
-    padding: .5rem;
-
-}
 
 button {
-
-    outline: none;
     background-color: #5d5b5b;
     color: white;
-    border: none;
-    border-radius: 2px;
-    width: 3rem;
-    height: 1.5rem;
-    font-size: .7rem;
 
 }
 
-#logo {
-
-    width: 3rem;
-
-}

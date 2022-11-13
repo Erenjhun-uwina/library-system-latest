@@ -81,10 +81,9 @@ body {
     font-size: 1.1rem;
     border-radius: 100%;
 }
-.nav_button img{
-    padding:0;
-    width: 100%;
-    object-fit: cover;
+img[class=nav_button]{
+    padding:.1rem;
+    border-radius: 15px;
 }
 
 #side_nav {
