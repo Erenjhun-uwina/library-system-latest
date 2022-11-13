@@ -2,17 +2,23 @@ body {
     background-color: grey;
 }
 
+h1{
+    font-size: 5rem;
+    color: rgb(65, 64, 64);
+}
+
 div{
     background-color: white;
     color: rgb(75, 73, 73);
     font-style: normal;
-   text-align: center;
+    font-size: 5rem;
+    text-align: center;
 }
 
 #home {
     text-align: right;
 }
-
-i{
-    font-size: 5rem;
-}
+    
+    i{
+        font-size: 5rem;
+    }
