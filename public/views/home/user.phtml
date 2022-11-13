@@ -16,6 +16,7 @@ $bview = new BookView;
     <script src="../src/js/logout.js" defer></script>
     <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
+    <script src="../src/js/nav_btns.js" defer></script>
 </head>
 
 <body>
@@ -28,16 +29,21 @@ $bview = new BookView;
         </div>
 
 
-        <img  class="nav_button" src="../src/assets/logo.png">
+        <img class="nav_button" src="../src/assets/logo.png">
         <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
-        <p class="nav_button"><i class="fa-regular fa-envelope"></i></p>
-        <p id="menu" class="nav_button"><i class="fa-solid fa-ellipsis-vertical"></i>
+        <p class="nav_button" id="_btn"><i class="fa-regular fa-envelope"></i></p>
+
+        <p id="menu" class="nav_button">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </p>
         <div id="menu_opt_con">
             <p id="about_us">about us</p>
             <p id="logout">logout</p>
             <p id="update_pass">update password</p>
         </div>
-        </p>
+
+
+
     </nav>
 
     <nav id="side_nav">

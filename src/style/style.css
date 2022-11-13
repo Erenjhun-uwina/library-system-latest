@@ -240,7 +240,7 @@ hr {
     position: absolute;
     background: white;
     border-radius: 3px;
-    display: none;
+    /* display: none; */
 }
 
 #menu_opt_con p{
