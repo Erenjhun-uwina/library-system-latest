@@ -64,6 +64,10 @@ body {
     background-color: rgb(236, 236, 236);
 }
 
+#search_res .hover{
+    background-color: red;
+}
+
 .nav_button {
     background-color: #fbf5f5;
     padding: 1rem;
@@ -76,6 +80,11 @@ body {
     justify-items: center;
     font-size: 1.1rem;
     border-radius: 100%;
+}
+.nav_button img{
+    padding:0;
+    width: 100%;
+    object-fit: cover;
 }
 
 #side_nav {

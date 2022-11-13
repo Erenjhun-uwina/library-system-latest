@@ -32,7 +32,12 @@ class Router
     {
 
         $req_uri = parse_url($_SERVER['REQUEST_URI']);
-        $req_path = str_replace("/xampp/test", "", $req_uri['path']);
+        $path = $req_uri['path'];
+
+        $path_exp = explode("/", $path);
+        $req_index = array_search("library-system-latest", $path_exp) + 1;
+        $req_path = "/".implode("/",array_slice($path_exp, $req_index));
+
         $method  = $_SERVER['REQUEST_METHOD'];
 
 
@@ -42,10 +47,10 @@ class Router
             if ($handler['path'] === $req_path and $handler['method'] === $method) $callback = $handler['handler'];
         }
 
-       if($callback === null){
+        if ($callback === null) {
             header('HTTP/1.0 404 NOT FOUND');
             $callback = $this->notFoundHandler;
-       }
+        }
 
 
         call_user_func_array($callback, [

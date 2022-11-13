@@ -12,7 +12,6 @@ if (!isset($_SESSION['acc_type'])) {
 $router = new Router();
 
 
-
 function login_handler(string $acc)
 {
 
@@ -74,7 +73,6 @@ $router->get('/home/admin', function () {
 
 $router->add_not_found_handler(function () {
     require __DIR__ . '/views/notfound.phtml';
-    echo __DIR__;
 });
 
 
