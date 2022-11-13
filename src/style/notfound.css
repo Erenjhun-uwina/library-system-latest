@@ -1,7 +1,7 @@
 body {
     background-color: grey;
 }
-#nfound {
+.div{
     background-color: white;
     color: rgb(75, 73, 73);
     font-style: normal;
@@ -10,5 +10,5 @@ body {
 
 #home {
     justify-content: right;
-    
+
 }
