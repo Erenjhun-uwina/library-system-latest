@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(#dbcdb2, #7e4733);
+    background: #7e4733 linear-gradient(#dbcdb2, #7e4733);
     min-height: 100vh;
 }
 
@@ -137,6 +137,32 @@ img[class=nav_button]{
     height: 100%;
     max-width: 8.7rem;
     overflow: hidden;
+    transition: scale .2s ease-out;
+}
+
+.card:not(.preview)::before{
+    content:"details";
+    position: absolute;
+    padding-top: 5rem;
+    top:20rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    
+
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background: rgba(0,0,0, 0.5);
+    transition:top .4s ease-out;
+}
+
+.card:hover::before{
+    top:0;
+}
+.card:not(.preview):hover{
+    scale: 1.05;
 }
 
 .card::after {
@@ -240,7 +266,7 @@ hr {
     position: absolute;
     background: white;
     border-radius: 3px;
-    /* display: none; */
+    display: none;
 }
 
 #menu_opt_con p{
@@ -248,23 +274,25 @@ hr {
     margin: .1rem 0;
     padding: .3rem .2rem;
     background:white;
+    user-select: none;
 }
 
 #menu_opt_con p:hover {
     background-color: rgb(236, 236, 236);
-
 }
 
 #book_main_details {
     background-color: white;
-    color: rgba(0, 0, 0, 0.423);
+    color: rgba(0, 0, 0);
     width: 100%;
     text-align: left;
+    user-select: text;
 }
 
 #book_prev_title{
     font-weight: bold;
     font-size: 2rem;
+    user-select: auto;
 }
 
 #book_main_button{

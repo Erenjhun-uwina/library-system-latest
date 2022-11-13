@@ -1,24 +1,57 @@
+*{  
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: grey;
 }
 
-h1{
+h1 {
     font-size: 5rem;
     color: rgb(65, 64, 64);
+    margin-bottom: 5rem;
+    user-select: none;
 }
 
-div{
-    background-color: white;
+a{
+    user-select: none;
+    text-decoration: none;
+    font-size: 2rem;
+    color:white;
+    background: #4c4745;
+    padding:.5rem 1rem;
+    border-radius: 10px;
+}
+
+div {
+    background-color:#dbcdb2;
     color: rgb(75, 73, 73);
     font-style: normal;
-    font-size: 5rem;
     text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 90%;
+    width: 90%;
+}
+
+p{
+    font-size: 1.5rem;
+    margin: 1rem;
+    margin-bottom: 5rem;
 }
 
 #home {
     text-align: right;
 }
-    
-    i{
-        font-size: 5rem;
-    }
+
+i {
+    font-size: 5rem;
+}

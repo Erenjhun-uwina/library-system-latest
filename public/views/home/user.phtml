@@ -33,8 +33,8 @@ $bview = new BookView;
         <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
         <p class="nav_button" id="_btn"><i class="fa-regular fa-envelope"></i></p>
 
-        <p id="menu" class="nav_button">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+        <p  class="nav_button menu">
+            <i class="fa-solid fa-ellipsis-vertical menu"></i>
         </p>
         <div id="menu_opt_con">
             <p id="about_us">about us</p>
@@ -53,7 +53,7 @@ $bview = new BookView;
     </nav>
 
     <h2>recomended</h2>
-    <div id="recommended_container" class="card_con">
+    <div id="recommended_container" class="card_con book_btn">
         <?php $bview->new_release_books() ?>
     </div>
 
@@ -70,7 +70,7 @@ $bview = new BookView;
 
         <form>
             <section class="card_con">
-                <div class="card">
+                <div class="card preview">
                     <img id="book_prev_img" src="">
                 </div>
                 <div id="book_main_details">
@@ -90,19 +90,8 @@ $bview = new BookView;
             </div>
 
 
-            <section id="book_recomendation" class="card_con">
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/4f/12/d9/4f12d987e42457b542f023f8131229fc.jpg">
-                </div>
+            <section id="book_recomendation" class="card_con  book_btn">
+                <?php $bview->new_books()?>
             </section>
         </form>
     </section>
