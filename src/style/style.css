@@ -52,20 +52,22 @@ body {
 
 #search_res p {
     background: white;
-    margin: .1rem 0;
+    margin: .1rem .1rem;
     padding: .5rem;
     color: #322f2e;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition:background-color.3s ease-in;
 }
 
 #search_res p:hover{
-    background-color: rgb(236, 236, 236);
+    background-color: #ccc;
 }
 
 #search_res .hover{
-    background-color: red;
+    background-color: #ccc;
+    border-left: 4px solid rgb(255, 213, 73);
 }
 
 .nav_button {
