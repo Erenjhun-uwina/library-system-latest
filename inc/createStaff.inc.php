@@ -17,7 +17,7 @@ echo create();
 function is_available(){
     global $s,$uname;
 
-    $result = $s->select_data("Username",$uname)->fetch_assoc();
+    $result = $s->select_data("Username=?",$uname)->fetch_assoc();
     if($result) return "This Username is already registered to an accocunt";
     return true;
 }

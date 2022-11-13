@@ -16,7 +16,7 @@ echo create();
 function is_available(){
     global $ctrl,$studno;
 
-    $result = $ctrl->select_data("Student_no",$studno)->fetch_assoc();
+    $result = $ctrl->select_data("Student_no = ?",$studno)->fetch_assoc();
     if($result) return "This student number is already registered to an accocunt";
     return true;
 }

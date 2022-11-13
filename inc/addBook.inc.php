@@ -44,13 +44,17 @@ function create()
 
 function uploadImage(){
 
-    global $title;
     $file = $_FILES['cover_img'];
     $ext = explode(".",$file['name']);  
     $ext = strtolower(end($ext));
     $date = date('YmdHis');
+    $rand1 = rand(0,10);
+    $rand2 = rand(0,5);
+    
 
-    $new_file_name = "$title$date.$ext";
+    $new_file_name = "book.png";
+
+    if($ext) $new_file_name = "$rand1$date$rand2.$ext";
     $path = '../src/assets/covers';
 
     move_uploaded_file($file['tmp_name'],"$path/$new_file_name");
