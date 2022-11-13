@@ -1,9 +1,6 @@
-
 let change_pass_con = document.querySelector('#change_pass')
 let change_pass_form = document.querySelector('#change_pass form')
 let change_pass_btn = document.querySelector('#update_pass')
-
-
 
 change_pass_con.addEventListener("transitionend", () => {
     display_none(change_pass_con)
