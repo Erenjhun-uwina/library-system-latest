@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +14,16 @@
     <div>
         <h1>Not Found</h1>
     </div>
-    
-    <div class="home">
-    <a href="../home">go to home</a>
+
+    <div>
+        <i class="fa-solid fa-triangle-exclamation fa-beat"></i>
+        <p>
+            <?php echo "cannot find ".$_SERVER['REQUEST_URI'];?>
+        </p>
+    </div>
+
+    <div id="home">
+        <a href="../home">go to home</a>
     </div>
 </body>
 
