@@ -45,9 +45,6 @@ function show_prev(el) {
 }
 
 
-
-
-
 book_prev.con.addEventListener("transitionend", () => {
     display_none(book_prev.con)
 })

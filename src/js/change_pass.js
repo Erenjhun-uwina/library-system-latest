@@ -4,8 +4,6 @@ let change_pass_con = document.querySelector('#change_pass'),
     change_pass_new = document.getElementsByName("new_pass")[0],
     change_pass_confirm = document.getElementsByName("pass")[0]
 
-
-
 change_pass_con.addEventListener("transitionend", () => {
     display_none(change_pass_con)
 
