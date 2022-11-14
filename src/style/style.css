@@ -120,8 +120,6 @@ img[class=nav_button]{
     user-select: auto;
 }
 
-
-
 .card_con {
     gap: 1rem;
     display: flex;
@@ -154,7 +152,7 @@ img[class=nav_button]{
     
 
     color: white;
-    font-size: 2rem;
+    font-size: 3vw;
     font-weight: bold;
     background: rgba(0,0,0, 0.5);
     transition:left .2s ease-out .2s;
