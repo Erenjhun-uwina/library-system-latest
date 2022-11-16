@@ -58,3 +58,9 @@ class Router
         ]);
     }
 }
+
+
+function view(string $path){
+    $path = "./templates/".$path.".phtml";
+    return $path;
+}
