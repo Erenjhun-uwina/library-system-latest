@@ -1,6 +1,6 @@
 <?php
 
-$aview = new AdminView;
+$view = new AdminView;
 $bview = new BookView;
 ?>
 
@@ -17,7 +17,6 @@ $bview = new BookView;
     
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
-    <script src="../src/js/change_pass.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
     <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
@@ -47,12 +46,7 @@ $bview = new BookView;
         </div>
     </nav>
 
-    <nav id="side_nav">
-        <div><span>Admin</span></div>
-        <div id="add_staff"><span>Staff</span><i class="fa-solid fa-circle-plus"></i></div>
-        <div id="add_user"><span>User</span><i class="fa-solid fa-circle-plus"></i></div>
-        <div id="add_book"><span>book</span><i class="fa-solid fa-circle-plus"></i></div>
-    </nav>
+    <?php require view("side_nav");?>
 
 
     <div id="new_container" class="card_con book_btn">
