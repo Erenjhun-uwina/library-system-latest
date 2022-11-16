@@ -1,50 +1,36 @@
-let add_staff = document.querySelector('#add_staff'),
-    add_book = document.querySelector('#add_book'),
-    add_user = document.querySelector('#add_user'),
-    burrow_btn = document.querySelector("#borrow_book"),
-    return_btn = document.querySelector("#return_book")
 
-let user_form_con = document.querySelector('#user_regis'),
-    user_form = document.querySelector("#user_regis form")
+const forms = []//wtf is the past tense of setup??????? and wtf is the spelling of pastense wtffffffffffffff
 
-let staff_form_con = document.querySelector('#staff_regis'),
-    staff_form = document.querySelector('#staff_regis form')
+/**
+ * sets forms events
+ * @param {*} form  form container reference
+ * @param {*} btn  the html button reference
+ * @param {*} callback callback runs after submitting the passed form
+ * @returns 
+ */
+function setup_form_ev(form, btn,callback=()=>{}) {
+    if (!form) return
 
-
-let book_form_con = document.querySelector('#book_regis'),
-    book_form = document.querySelector('#book_regis form')
-
-
-let burrow_form_con = document.querySelector("#borrow"),
-    burrow_form = document.querySelectorAll("#borrow form")
-
-let return_form_con = document.querySelector("#return"),
-    return_form = document.querySelectorAll("#borrow form")
-
-
-
-setup_form_ev(return_form_con, return_btn)
-setup_form_ev(burrow_form_con, burrow_btn)
-setup_form_ev(user_form_con, add_user)
-setup_form_ev(staff_form_con, add_staff)
-setup_form_ev(book_form_con, add_book)
-
-
-function setup_form_ev(form_con, btn) {
-    if (!form_con) return
-
-    form_con.addEventListener("transitionend", () => {
-        display_none(form_con)
-
+    form.addEventListener("transitionend", () => {
+        display_none(form)
     })
 
     btn.onclick = () => {
-        show_form(form_con)
+        show_form(form)
     }
 
     form_con.onclick = (ev) => {
-        hide_form(form_con, ev)
+        hide_form(form, ev)
     }
+    forms.push(form)
+    form.addEventListener("submit", async (ev) => {
+        ev.preventDefault()
+
+        if (form.validating) return
+        form.validating = true
+        callback()
+        form.validating = false
+    });
 }
 
 function display_none(elem) {
@@ -60,4 +46,27 @@ function hide_form(elem, ev) {
 function show_form(elem) {
     elem.style.display = "table"
     elem.style.opacity = "1"
+}
+
+function set_search_param(params) {
+
+    let url = new URL(window.location)
+
+    if (params) {
+        for (const param in params) {
+            url.searchParams.set(param, params[param])
+        }
+
+        return history.replaceState({}, '', url)
+    }
+    history.replaceState({}, '', url.pathname)
+}
+/**
+ * resets all forms (setuped){the fuck is the pastense of that word????} by setup_form_ev function
+ * resets all forms what do you expect???ahhahahahahah
+ */
+function reset_forms() {
+    forms.forEach(form => {
+        if (form) form.reset()
+    })
 }

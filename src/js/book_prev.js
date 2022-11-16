@@ -10,6 +10,8 @@ let book_prev = {
 
 let book_btns = document.querySelectorAll('.book_btn');
 
+let search_params = new URL(location).searchParams;
+
 
 [...book_btns].forEach((books) => {
     [...books.children].forEach((book) => {
@@ -17,8 +19,10 @@ let book_btns = document.querySelectorAll('.book_btn');
         book.onclick = () => {
             show_prev(book)
         }
+        if(book.dataset.details.split("%//%")[0] == search_params.get('book_prev'))book.click()
     })
 })
+
 
 
 
@@ -42,6 +46,10 @@ function show_prev(el) {
 
     book_prev.img.parentElement.style.setProperty("--bg", "url(" +location.origin +"/xampp/test/"+ img_path + book_details.img + ")")
     show_form(book_prev.con)
+
+    set_search_param({
+        'book_prev':book_details.id
+    })
 }
 
 
@@ -51,6 +59,7 @@ book_prev.con.addEventListener("transitionend", () => {
 
 book_prev.con.onclick = (ev) => {
     hide_form(book_prev.con, ev)
+    if(ev.target == book_prev.con)set_search_param()
 }
 
 let cards = document.querySelectorAll(".card")
