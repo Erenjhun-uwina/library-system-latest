@@ -2,7 +2,11 @@
 const forms = []//wtf is the past tense of setup??????? and wtf is the spelling of pastense wtffffffffffffff
 
 /**
- * sets forms events
+ * sets forms events\n 
+ * eg.btn.onclick => show_form\n
+ * form.onclick =>close\n
+ * form.ontransitionend => hide\n
+ * form.onsubmit => callback
  * @param {*} form  form container reference
  * @param {*} btn  the html button reference
  * @param {*} callback callback runs after submitting the passed form
@@ -19,7 +23,7 @@ function setup_form_ev(form, btn,callback=()=>{}) {
         show_form(form)
     }
 
-    form_con.onclick = (ev) => {
+    form.onclick = (ev) => {
         hide_form(form, ev)
     }
     forms.push(form)

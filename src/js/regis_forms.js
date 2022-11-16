@@ -43,7 +43,7 @@ async function setup_book_transaction_form(form) {
 
     console.log(form.parentElement.id)
 
-    let data = await fetch(`../inc/${form.parentElement.id}_book.inc.php`, {
+    let data = await fetch(`../inc/book_transaction.inc.php`, {
         method: "post",
         body: fdata
     })
