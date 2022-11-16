@@ -9,7 +9,7 @@ class UserView extends UserCtrl{
     }
 
 
-    public function Username($id)
+    public function username($id)
     {
         $user  = $this->select_data("Id = ?",$id)->fetch_assoc();
         echo $user['Student_no'];

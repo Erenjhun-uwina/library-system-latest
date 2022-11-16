@@ -1,31 +1,12 @@
 <?php
 
-class AdminCtrl extends Model
-{
-    public function select_data(String $where, $val)
-    {
-        try {
-            $this->open();
-
-            $val = (gettype($val) == "array") ? $val : array($val);
-
-
-            $query = "SELECT * FROM `admins` WHERE $where";
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bind_param(str_repeat('s', count($val)), ...$val);
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-            $stmt->close();
-            $this->kill();
-
-            return $result;
-        } catch (Exception $err) {
-            $this->kill();
-            throw $err;
-        }
+class AdminCtrl extends Control
+{   
+    public function __construct() {
+        $this->default_db = "admins";
     }
+
+   
 
     // public function create(string $uname, string $pword)
     // {
@@ -48,28 +29,6 @@ class AdminCtrl extends Model
     //     }
     // }
 
-
-
-    public function update()
-    {
-        try {
-            $this->open();
-
-
-            $args = func_get_args();
-
-            $field = array_shift($args);
-            $val = $args;
-            $query = $this->conn->prepare("UPDATE `admins` SET $field WHERE `Id` =? ");
-
-            $query->bind_param(str_repeat('s', count($val)), ...$val);
-            $query->execute();
-            $this->kill();
-        } catch (Exception $err) {
-            $this->kill();
-            throw $err;
-        }
-    }
 
 
     // public function delete($id)

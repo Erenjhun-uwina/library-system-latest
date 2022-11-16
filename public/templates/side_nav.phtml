@@ -1,8 +1,28 @@
 <nav id="side_nav">
-    <div><span>Staff</span></div>
-    <div id="add_staff"><span>Staff</span><i class="fa-solid fa-circle-plus"></i></div>
-    <div id="add_user"><span>User</span><i class="fa-solid fa-circle-plus"></i></div>
-    <div id="add_book"><span>Book</span><i class="fa-solid fa-circle-plus"></i></div>
-    <div id="borrow_book"><span>Borrow</span><i class="fa-solid fa-circle-plus"></i></div>
-    <div id="return_book"><span>Return</span><i class="fa-solid fa-circle-plus"></i></div>
+    <div>
+        <span>
+            <?php
+            $sid =  $_SESSION['id'];
+            $acc_type = $_SESSION['acc_type'];
+
+            if ($acc_type == 'admin') echo $view->username($sid);
+            else echo $view->full_name($sid);
+            ?>
+        </span>
+    </div>
+
+    <?php
+
+    if ($acc_type == 'admin') echo '<div id="add_staff"><span>Staff</span><i class="fa-solid fa-circle-plus"></i></div>';
+    if ($acc_type == 'staff' || $acc_type == 'admin') echo ' <div id="add_user"><span>User</span><i class="fa-solid fa-circle-plus"></i></div>
+                                                            <div id="add_book"><span>Book</span><i class="fa-solid fa-circle-plus"></i></div>
+                                                            <div id="borrow_book"><span>Borrow</span><i class="fa-solid fa-circle-plus"></i></div>
+                                                            <div id="return_book"><span>Return</span><i class="fa-solid fa-circle-plus"></i></div>';
+
+    ?>
+
+
+
+
+
 </nav>

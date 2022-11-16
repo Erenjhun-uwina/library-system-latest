@@ -14,7 +14,6 @@ $router = new Router();
 
 function login_handler(string $acc)
 {
-
     if (isset($_SESSION['id']) and $_SESSION['acc_type'] == $acc) {
         header("location:../home/$acc");
     }
@@ -23,7 +22,6 @@ function login_handler(string $acc)
 
 function home_handler(string $acc)
 {
-
     if (!isset($_SESSION['id']) or $_SESSION['acc_type'] != $acc) {
         header("location:../login/$acc");
     }

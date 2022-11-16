@@ -1,31 +1,9 @@
 <?php
 
-class StaffCtrl extends Model
+class StaffCtrl extends Control
 {
-
-    public function select_data(String $where, $val)
-    {
-        try {
-            $this->open();
-
-            $val = (gettype($val) == "array") ? $val : array($val);
-
-            $query = "SELECT * FROM `staffs` WHERE $where";
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bind_param(str_repeat('s', count($val)), ...$val);
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-            $stmt->close();
-            $this->kill();
-
-            return $result;
-        } catch (Exception $err) {
-
-            $this->kill();
-            throw $err;
-        }
+    public function __construct() {
+        parent::__construct("staffs");
     }
 
     public function create(string $FN, string $LN, string $Pass, $Uname)
@@ -49,44 +27,4 @@ class StaffCtrl extends Model
         }
     }
 
-    public function update()
-    {
-        try {
-            $this->open();
-
-
-            $args = func_get_args();
-           
-            $field = array_shift($args);
-            $val = $args;
-            
-            $query = $this->conn->prepare("UPDATE `staffs` SET $field WHERE `Id` =? ");
-
-            $query->bind_param(str_repeat('s', count($val)), ...$val);
-            $query->execute();
-            $this->kill();
-        } catch (Exception $err) {
-            $this->kill();
-            throw $err;
-        }
-    }
-
-
-    public function delete($id)
-    {
-        try {
-            $this->open();
-            $query = $this->conn->prepare("
-            DELETE FROM `staffs` WHERE `id` = ? ");
-            $query->bind_param("s", $id);
-            $query->execute();
-
-
-            $this->kill();
-        } catch (Exception $err) {
-
-            $this->kill();
-            throw $err;
-        }
-    }
 }
