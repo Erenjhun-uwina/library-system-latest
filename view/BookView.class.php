@@ -10,7 +10,7 @@ class BookView extends BookCtrl{
 
     public function new_books()
     {
-        $books = $this->select_data(' ? ORDER BY Id DESC LIMIT 7',1);
+        $books = $this->select_data(' ? ORDER BY Id DESC LIMIT 6',1);
         $result = "";
         
         while ($book = $books->fetch_assoc()) {
@@ -29,7 +29,7 @@ class BookView extends BookCtrl{
     }
 
     public function new_release_books(){
-        $books = $this->select_data(' ? ORDER BY Date_release DESC LIMIT 7',1);
+        $books = $this->select_data(' ? ORDER BY Date_release DESC LIMIT 6',1);
 
         $result = "";
         
