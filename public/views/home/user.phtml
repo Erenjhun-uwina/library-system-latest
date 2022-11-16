@@ -68,44 +68,10 @@ $bview = new BookView;
     </div>
 
     <!-- hidden sections -->
-    <section id="book_preview" class="regis_form_con">
-
-        <form>
-            <section class="card_con">
-                <div class="card preview">
-                    <img id="book_prev_img" src="">
-                </div>
-                <div id="book_main_details">
-                    <p id="book_prev_title"> sample title </p>
-                    <p id="book_prev_author">(author)</p>
-                    <p id="book_prev_date">2020-11-29</p><br>
-                    <p id="book_prev_summary">summary</p>
-
-                </div>
-                <div id="book_main_button">
-                    <button>burrow</button>
-                </div>
-            </section>
-            <hr>
-            <div id="book_related">
-                <p>Related books...</p><br>
-            </div>
-
-            <section id="book_recomendation" class="card_con book_btn">
-               <?php $bview->related_searches()?>
-            </section>
-        </form>
-    </section>
-
-    <section id="change_pass" class="regis_form_con">
-        <form>
-            <span><?php echo $view->Username($_SESSION['id']) ?></span><br>
-            <input type="text" placeholder="Old password" name="old_pass" required><br>
-            <input type="password" placeholder="New password" name="new_pass" required><br>
-            <input type="password" placeholder="Confirm password" name="pass" required><br>
-            <button type="submit">Update</button>
-        </form>
-    </section>
+    
+    <?php 
+        include view("book_preview_change_pass_forms");
+    ?>
 
 </body>
 
