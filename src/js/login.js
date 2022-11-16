@@ -9,11 +9,10 @@ form.addEventListener("submit",async (ev)=>{
 
     if (validating)return
     validating = true
-    let fdata = new FormData(form);
+    let fdata = new FormData(form)
     fdata.append("acc_type",acc_type+'s')
     await login(fdata)
     validating = false
-    console.log(fdata)
 });
 
 
@@ -24,9 +23,7 @@ async function login(fdata) {
         method:"POST",
         body:fdata
     });
-
     data = await data.text()
-    console.log(data);
     if(data == "success") return goto_index()
     invalid_credentials()
 }
@@ -45,7 +42,5 @@ function invalid_credentials(){
 }
 
 function goto_index(){
-
-    
     location = `../home/`+acc_type;
 }

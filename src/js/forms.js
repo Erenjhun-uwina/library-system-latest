@@ -2,30 +2,37 @@
 const forms = []//wtf is the past tense of setup??????? and wtf is the spelling of pastense wtffffffffffffff
 
 /**
- * sets forms events\n 
- * eg.btn.onclick => show_form\n
- * form.onclick =>close\n
- * form.ontransitionend => hide\n
+ * sets forms events 
+ * 
+ * eg.btn.onclick => show_form
+ * 
+ * form.onclick =>close
+ * 
+ * form.ontransitionend => hide
+ * 
  * form.onsubmit => callback
- * @param {*} form  form container reference
+ * 
+ * @param {*} form_con  form container reference
+ * @param {*} form form reference
  * @param {*} btn  the html button reference
  * @param {*} callback callback runs after submitting the passed form
  * @returns 
  */
-function setup_form_ev(form, btn,callback=()=>{}) {
-    if (!form) return
+function setup_form_ev(form_con,form,btn,callback=()=>{}) {
+    if (!form_con) return
 
-    form.addEventListener("transitionend", () => {
-        display_none(form)
+    form_con.addEventListener("transitionend", () => {
+        display_none(form_con)
     })
 
     btn.onclick = () => {
-        show_form(form)
+        show_form(form_con)
     }
 
-    form.onclick = (ev) => {
-        hide_form(form, ev)
+    form_con.onclick = (ev) => {
+        hide_form(form_con, ev)
     }
+
     forms.push(form)
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault()
@@ -70,7 +77,14 @@ function set_search_param(params) {
  * resets all forms what do you expect???ahhahahahahah
  */
 function reset_forms() {
+
     forms.forEach(form => {
-        if (form) form.reset()
+        
+        
+        try {
+            if (form) form.reset()
+        } catch (error) {
+            throw new Error('given a given param if not a form == '+form)
+        }
     })
 }

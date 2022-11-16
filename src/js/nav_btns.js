@@ -32,14 +32,13 @@ window.onclick = ev => {
     return false
 }
 
-
 let change_pass_con = document.querySelector('#change_pass'),
 change_pass_form = document.querySelector('#change_pass form'),
 change_pass_btn = document.querySelector('#update_pass'),
 change_pass_new = document.getElementsByName("new_pass")[0],
 change_pass_confirm = document.getElementsByName("pass")[0]
 
-setup_form_ev(change_pass_con,change_pass_btn,change_pass_cb);
+setup_form_ev(change_pass_con,change_pass_form,change_pass_btn,change_pass_cb);
 
 
 async function change_pass_cb(){
