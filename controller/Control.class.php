@@ -19,6 +19,7 @@ class Control extends Model
 
 
             $query = "SELECT * FROM " . $this->default_db . " WHERE $where";
+          
             $stmt = $this->conn->prepare($query);
 
             $stmt->bind_param(str_repeat('s', count($val)), ...$val);
@@ -35,19 +36,18 @@ class Control extends Model
         }
     }
 
-    public function update(string $fields,string $vals)
+    public function update(string $fields, $vals , string $id)
     {
         try {
             $this->open();
 
-            $args = func_get_args();
-           
-            $field = array_shift($args);
-            $val = $args;
+        
+            $vals = gettype($vals)=='array'?$vals:[$vals];
+            $params = [...$vals,$id];
 
-            $query = $this->conn->prepare("UPDATE ".$this->default_db." SET $field WHERE `Id` =? ");
+            $query = $this->conn->prepare("UPDATE ".$this->default_db." SET $fields WHERE `Id` =? ");
 
-            $query->bind_param(str_repeat('s', count($val)), ...$val);
+            $query->bind_param(str_repeat('s', count($vals)), ...$params);
             $query->execute();
             $this->kill();
         } catch (Exception $err) {
