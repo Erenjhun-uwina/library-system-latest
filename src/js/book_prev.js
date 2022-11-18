@@ -10,7 +10,6 @@ let book_prev = {
 
 let book_btns = document.querySelectorAll('.book_btn');
 
-let search_params = new URL(location).searchParams;
 
 
 [...book_btns].forEach((books) => {
@@ -22,9 +21,6 @@ let search_params = new URL(location).searchParams;
         if(book.dataset.details.split("%//%")[0] == search_params.get('book_prev'))book.click()
     })
 })
-
-
-
 
 function show_prev(el) {
     let details = el.dataset.details.split("%//%"),
@@ -51,7 +47,6 @@ function show_prev(el) {
         'book_prev':book_details.id
     })
 }
-
 
 book_prev.con.addEventListener("transitionend", () => {
     display_none(book_prev.con)

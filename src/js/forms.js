@@ -1,5 +1,14 @@
 
 const forms = []//wtf is the past tense of setup??????? and wtf is the spelling of pastense wtffffffffffffff
+const states = []
+
+
+let search_params = new URL(location).searchParams;
+function resume_state(){
+   states.forEach((el)=>{
+        if(search_params.get(el[0]))el[1].click()
+   })
+}
 
 /**
  * sets forms events 
@@ -18,7 +27,7 @@ const forms = []//wtf is the past tense of setup??????? and wtf is the spelling 
  * @param {*} callback callback runs after submitting the passed form
  * @returns 
  */
-function setup_form_ev(form_con,form,btn,callback=()=>{}) {
+function setup_form_ev(form_con,form,btn,callback=()=>{},state) {
     if (!form_con) return
 
     form_con.addEventListener("transitionend", () => {
@@ -27,13 +36,20 @@ function setup_form_ev(form_con,form,btn,callback=()=>{}) {
 
     btn.onclick = () => {
         show_form(form_con)
+        const st = {}
+        st[state[0]]="open"
+        set_search_param(st)
     }
 
     form_con.onclick = (ev) => {
         hide_form(form_con, ev)
+        set_search_param()
     }
 
     forms.push(form)
+    states.push([state,btn])
+
+
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault()
 
@@ -47,6 +63,7 @@ function setup_form_ev(form_con,form,btn,callback=()=>{}) {
 function display_none(elem) {
     if (elem.style.opacity == "1") return
     elem.style.display = "none"
+    set_search_param()
 }
 
 function hide_form(elem, ev) {

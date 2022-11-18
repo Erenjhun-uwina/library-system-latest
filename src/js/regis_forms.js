@@ -12,7 +12,6 @@ let user_form_con = document.querySelector('#user_regis'),
     burrow_form_con = document.querySelector("#borrow"),
     return_form_con = document.querySelector("#return")
 
-
 let user_form = document.querySelector("#user_regis form"),
     staff_form = document.querySelector('#staff_regis form'),
     book_form = document.querySelector('#book_regis form'),
@@ -21,11 +20,13 @@ let user_form = document.querySelector("#user_regis form"),
 
 //references #################################################################
 
-setup_form_ev(return_form_con, return_form, return_btn, () => { setup_book_transaction_form(return_form) })
-setup_form_ev(burrow_form_con, burrow_form, burrow_btn, () => { setup_book_transaction_form(burrow_form) })
-setup_form_ev(user_form_con, user_form, add_user, () => { setup_regis_form(user_form) })
-setup_form_ev(staff_form_con, staff_form, add_staff, () => { setup_regis_form(staff_form) })
-setup_form_ev(book_form_con, book_form, add_book, () => { setup_regis_form(book_form) })
+setup_form_ev(return_form_con, return_form, return_btn, () => { setup_book_transaction_form(return_form) },['re'])
+setup_form_ev(burrow_form_con, burrow_form, burrow_btn, () => { setup_book_transaction_form(burrow_form) },['bo'])
+setup_form_ev(user_form_con, user_form, add_user, () => { setup_regis_form(user_form) },['user_form'])
+setup_form_ev(staff_form_con, staff_form, add_staff, () => { setup_regis_form(staff_form) },['staff_form'])
+setup_form_ev(book_form_con, book_form, add_book, () => { setup_regis_form(book_form) },['book_form'])
+
+resume_state()
 
 
 // ###########################################################################
