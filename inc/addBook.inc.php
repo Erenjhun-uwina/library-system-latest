@@ -4,7 +4,7 @@ require_once "../autoloader.php";
 
 $title = $_POST['title'];
 $author= $_POST['author'];
-$daterelease = $_POST['date_release'];
+$daterelease = date_format(date_create( $_POST['date_release']),'m-d-Y');
 $genre = $_POST['genre'];
 
 
@@ -14,6 +14,7 @@ $language = $_POST['language'];
 $ctrl = new BookCtrl;
 $s = $ctrl;
 
+echo $daterelease;
 
 echo create();
 
@@ -30,6 +31,7 @@ function create()
 {
     global $ctrl,$title, $author, $daterelease, $genre, $publisher, $language;
 
+    
     $coverimg = uploadImage();
 
     $is_avail = is_available();
