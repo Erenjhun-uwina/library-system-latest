@@ -10,6 +10,31 @@ class Control extends Model
         $this->default_db = $default_db;
     }
 
+    protected function _create(string $fields,$vals){
+        try {
+            $this->open();
+
+            $vals = (gettype($vals)=='array')?$vals:[$vals];
+            $len = count(explode(",",$fields));
+
+            $query = "INSERT INTO `".$this->default_db."`($fields) VALUES (?".str_repeat(",?",$len-1).")";
+            $stmt = $this->conn->prepare($query);
+
+           
+            $stmt->bind_param(str_repeat('s',$len),...$vals);
+            $stmt->execute();
+
+            $last_id = $this->conn->insert_id;
+
+            $this->kill();
+            return $last_id;
+
+        } catch ( Exception $err) {
+           $this->kill();
+           throw $err;
+        }
+    }
+
     public function select_data(String $where, $vals)
     {
         try {
