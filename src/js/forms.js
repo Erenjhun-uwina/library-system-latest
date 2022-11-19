@@ -47,7 +47,7 @@ function setup_form_ev(form_con,form,btn,callback=()=>{},state) {
     }
 
     forms.push(form)
-    states.push([state,btn])
+    if(state)states.push([state,btn])
 
 
     form.addEventListener("submit", async (ev) => {

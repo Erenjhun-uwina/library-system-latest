@@ -1,15 +1,58 @@
 
 let book_prev = {
     con: document.querySelector('#book_preview'),
+    form:document.querySelector('#book_preview form'),
+    burrow:document.querySelector('#book_prev_button button'),
     img: document.querySelector('#book_prev_img'),
     title: document.querySelector("#book_prev_title"),
     author: document.querySelector("#book_prev_author"),
     date: document.querySelector("#book_prev_date"),
 }
 
-
 let book_btns = document.querySelectorAll('.book_btn');
 
+setup_borrow_form(book_prev.con,book_prev.form,book_prev.burrow,async ()=>{
+
+    const fdata  = new FormData(book_prev.form)
+    fdata.append("book_id",book_prev.book_id)
+
+    let data = await fetch('../inc/borrow.inc.php',{
+        method:'post',
+        body:fdata
+    })
+
+    data = await data.text()
+    alert(data)
+    console.log(data);
+})  
+
+
+
+function setup_borrow_form(form_con,form,btn,callback){
+
+    if(!book_prev.burrow) return
+    form_con.addEventListener("transitionend", () => {
+        display_none(form_con)
+    })
+
+    btn.onclick = () => {
+        show_form(form_con)
+        const st = {}
+    }
+
+    form_con.onclick = (ev) => {
+        hide_form(form_con, ev)
+    }
+
+    form.addEventListener("submit", async (ev) => {
+        ev.preventDefault()
+
+        if (form.validating) return
+        form.validating = true
+        callback()
+        form.validating = false
+    });
+}
 
 
 [...book_btns].forEach((books) => {
@@ -31,9 +74,10 @@ function show_prev(el) {
         title: details[1],
         author: details[2],
         date: details[3],
-        img: details[5],
+        img: details[5]
     }
 
+    book_prev.book_id = book_details.id
     book_prev.img.src = "../"+img_path + book_details.img
     book_prev.title.innerText = `"${book_details.title}"`
     book_prev.author.innerText = `(${book_details.author})`
