@@ -10,7 +10,7 @@ class Control extends Model
         $this->default_db = $default_db;
     }
 
-    protected function _create(string $fields,$vals){
+    protected function _create(string $fields,$vals):int{
         try {
             $this->open();
 
