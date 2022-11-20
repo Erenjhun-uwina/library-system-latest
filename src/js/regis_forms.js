@@ -17,10 +17,10 @@ const user_form = document.querySelector("#user_regis form"),
 
 //references #################################################################
 
-setup_form_ev(transaction_form_con, transaction_form, transaction_btn, () => { setup_book_transaction_form(transaction_form) },['transaction_form'])
-setup_form_ev(user_form_con, user_form, add_user, () => { setup_regis_form(user_form) },['user_form'])
-setup_form_ev(staff_form_con, staff_form, add_staff, () => { setup_regis_form(staff_form) },['staff_form'])
-setup_form_ev(book_form_con, book_form, add_book, () => { setup_regis_form(book_form) },['book_form'])
+setup_form_ev(transaction_form_con, transaction_form, transaction_btn, async () => { await setup_book_transaction_form(transaction_form) }, ['transaction_form'])
+setup_form_ev(user_form_con, user_form, add_user, async () => { await setup_regis_form(user_form) }, ['user_form'])
+setup_form_ev(staff_form_con, staff_form, add_staff, async () => { await setup_regis_form(staff_form) }, ['staff_form'])
+setup_form_ev(book_form_con, book_form, add_book, async () => { await setup_regis_form(book_form) }, ['book_form'])
 
 resume_state()
 
@@ -34,14 +34,13 @@ resume_state()
  */
 async function setup_book_transaction_form(form) {
     let fdata = new FormData(form)
-    fdata.append("type",form.parentElement.id)
-    
+    fdata.append("type", form.parentElement.id)
+
     let data = await fetch(`../inc/book_transaction.inc.php`, {
         method: "post",
         body: fdata
     })
     data = await data.text()
-    reset_forms()
     alert(data)
 }
 
@@ -55,9 +54,7 @@ async function setup_regis_form(form) {
 
     let fdata = new FormData(form);
     await register(fdata, form.dataset.type)
-
 }
-
 
 async function register(form, path) {
 
@@ -67,9 +64,6 @@ async function register(form, path) {
     });
 
     data = await data.text()
-
-    reset_forms()
-
     alert(data)
 }
 

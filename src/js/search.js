@@ -88,7 +88,10 @@ async function search() {
     [...search_res.children].forEach((child) => {
 
         child.addEventListener(
-            "click", () => show_prev(child)
+            "click", () => {
+                console.log(child.dataset.id);
+                show_prev(child.dataset.id)
+            }
         )
     });
 }
