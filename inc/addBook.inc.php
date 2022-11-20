@@ -7,14 +7,11 @@ $author= $_POST['author'];
 $daterelease = date_format(date_create( $_POST['date_release']),'m-d-Y');
 $genre = $_POST['genre'];
 
-
 $publisher = $_POST['publisher'];
 $language = $_POST['language'];
 
 $ctrl = new BookCtrl;
 $s = $ctrl;
-
-
 
 echo create();
 
@@ -32,11 +29,11 @@ function create()
     global $ctrl,$title, $author, $daterelease, $genre, $publisher, $language;
 
     
-    $coverimg = uploadImage();
-
     $is_avail = is_available();
 
     if ($is_avail===true) {
+        $coverimg = uploadImage();
+
         $id = $ctrl->create( $title, $author, $daterelease, $genre, $coverimg, $publisher, $language);
         if ($id)return "success";
     }
@@ -49,7 +46,7 @@ function uploadImage(){
     $file = $_FILES['cover_img'];
     $ext = explode(".",$file['name']);  
     $ext = strtolower(end($ext));
-    $date = date('YmdHis');
+    $date = date('YmdHi');
     $rand1 = rand(0,10);
     $rand2 = rand(0,5);
     
