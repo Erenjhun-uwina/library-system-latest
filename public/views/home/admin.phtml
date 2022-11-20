@@ -14,7 +14,7 @@ $bview = new BookView;
 
     <title>Admin home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
@@ -46,23 +46,20 @@ $bview = new BookView;
         </div>
     </nav>
 
-    <?php require view("side_nav");?>
+    <?php require view("side_nav"); ?>
 
 
-    <div id="new_container" class="card_con book_btn">
-        <?php $bview->new_books() ?>
-    </div>
-
-    <div id="new_release_container" class="card_con book_btn">
-        <?php $bview->new_release_books() ?>
-    </div>
+   
+    <?php $bview->new_books() ?>
+    
+    <?php $bview->new_release_books() ?>
 
     <!-- hidden sections -->
-    
-    <?php 
-        include view("return_borrow_forms");
-        include view("book_preview_change_pass_forms");
-        include view("user_book_forms");
+
+    <?php
+    include view("transaction_form");
+    include view("book_preview_change_pass_forms");
+    include view("user_book_forms");
     ?>
 
     <section id="staff_regis" class="regis_form_con">
@@ -76,6 +73,7 @@ $bview = new BookView;
             <Button type="submit">Create</Button>
         </form>
     </section>
+
 </body>
 
 </html>

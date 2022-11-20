@@ -14,7 +14,7 @@ $language = $_POST['language'];
 $ctrl = new BookCtrl;
 $s = $ctrl;
 
-echo $daterelease;
+
 
 echo create();
 

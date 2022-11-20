@@ -111,6 +111,7 @@ img[class=nav_button]{
     color: white;
     text-align: center;
     margin: .5rem;
+    margin-top: 0rem;
     padding:.5rem;
     width: 10rem;
 
@@ -127,12 +128,28 @@ img[class=nav_button]{
     user-select: auto;
 }
 
+.card_label{
+    display: inline-block;
+    margin-top:.2rem;
+    
+    padding: .4rem .2rem .5rem 1rem;
+    background: #7e4733;
+    min-width:10rem ;
+    border-radius: 1rem 1rem 0 0;
+    
+    font-weight: bold;
+    color: #ccc;
+}
+
 .card_con {
     
     display: flex;
-    margin-block: 1rem;
+    margin: 0  1rem .5rem;
     height: 13rem;
     justify-content: space-evenly;
+    background: #322f2e;
+    gap:.5rem;
+    border: .6rem solid brown ;
 }
 
 .card {

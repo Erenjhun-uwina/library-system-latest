@@ -1,44 +1,41 @@
 
-let book_prev = {
+const book_prev = {
     con: document.querySelector('#book_preview'),
-    form:document.querySelector('#book_preview form'),
-    burrow:document.querySelector('#book_prev_button button'),
+    form: document.querySelector('#book_preview form'),
+    burrow: document.querySelector('#book_prev_button button'),
     img: document.querySelector('#book_prev_img'),
     title: document.querySelector("#book_prev_title"),
     author: document.querySelector("#book_prev_author"),
     date: document.querySelector("#book_prev_date"),
 }
 
-let book_btns = document.querySelectorAll('.book_btn');
+const book_btns = document.querySelectorAll('.book_btn');
 
-setup_borrow_form(book_prev.con,book_prev.form,book_prev.burrow,async ()=>{
+resume_borrow_form()
 
-    const fdata  = new FormData(book_prev.form)
-    fdata.append("book_id",book_prev.book_id)
 
-    let data = await fetch('../inc/borrow.inc.php',{
-        method:'post',
-        body:fdata
+setup_borrow_form(book_prev.con, book_prev.form, async () => {
+
+    const fdata = new FormData(book_prev.form)
+    fdata.append("book_id", book_prev.book_id)
+
+    let data = await fetch('../inc/borrow.inc.php', {
+        method: 'post',
+        body: fdata
     })
 
     data = await data.text()
     alert(data)
-    console.log(data);
-})  
+})
 
 
+function setup_borrow_form(form_con, form, callback) {
 
-function setup_borrow_form(form_con,form,btn,callback){
+    if (!book_prev.burrow) return
 
-    if(!book_prev.burrow) return
     form_con.addEventListener("transitionend", () => {
         display_none(form_con)
     })
-
-    btn.onclick = () => {
-        show_form(form_con)
-        const st = {}
-    }
 
     form_con.onclick = (ev) => {
         hide_form(form_con, ev)
@@ -59,38 +56,69 @@ function setup_borrow_form(form_con,form,btn,callback){
     [...books.children].forEach((book) => {
 
         book.onclick = () => {
-            show_prev(book)
+            show_prev(book.dataset.id)
         }
-        if(book.dataset.details.split("%//%")[0] == search_params.get('book_prev'))book.click()
+
+       
     })
 })
 
-function show_prev(el) {
-    let details = el.dataset.details.split("%//%"),
-        img_path = "src/assets/covers/"
-
-    let book_details = {
-        id: details[0],
-        title: details[1],
-        author: details[2],
-        date: details[3],
-        img: details[5]
-    }
-
-    book_prev.book_id = book_details.id
-    book_prev.img.src = "../"+img_path + book_details.img
-    book_prev.title.innerText = `"${book_details.title}"`
-    book_prev.author.innerText = `(${book_details.author})`
-    book_prev.date.innerText = book_details.date
+/**
+ * 
+ * @param {int} el id of the book being fetch
+ */
+async function show_prev(id) {
 
 
-    book_prev.img.parentElement.style.setProperty("--bg", "url(" +location.origin +"/xampp/test/"+ img_path + book_details.img + ")")
+    const book_details = await fetch_book_details(id)
+    if(!book_details)  return console.warn('undefined book')
+    
+    const img_path = 'src/assets/covers/'
+
+    book_prev.book_id = book_details.Id
+    book_prev.img.src = "../" + img_path + book_details.Cover_img
+    book_prev.title.innerText = `"${book_details.Title}"`
+    book_prev.author.innerText = `-${book_details.Author}`
+    book_prev.date.innerText = book_details.Date_release
+
+
+    book_prev.img.parentElement.style.setProperty("--bg", "url(" + location.origin + "/xampp/library-system-latest/" + img_path + book_details.Cover_img + ")")
     show_form(book_prev.con)
 
     set_search_param({
-        'book_prev':book_details.id
+        'book_prev': book_details.Id
     })
 }
+
+/**
+ * @param {int} id 
+ * @returns {object} object containing book details
+ */
+async function fetch_book_details(id) {
+
+    const fdata = new FormData()
+    fdata.append("id", id)
+
+    let data = await fetch("../inc/book.inc.php", {
+        method: "post",
+        body: fdata
+    })
+
+    data = await data.json()
+    return data
+}
+
+/**
+ * opens the borrow form/book prev on reload if opened
+ * @returns null
+ */
+function resume_borrow_form(){
+    const book_id = search_params.get('book_prev')
+    if(!book_id)return
+    show_prev(book_id)
+}
+
+//################################################################### 
 
 book_prev.con.addEventListener("transitionend", () => {
     display_none(book_prev.con)
@@ -98,7 +126,7 @@ book_prev.con.addEventListener("transitionend", () => {
 
 book_prev.con.onclick = (ev) => {
     hide_form(book_prev.con, ev)
-    if(ev.target == book_prev.con)set_search_param()
+    if (ev.target == book_prev.con) set_search_param()
 }
 
 let cards = document.querySelectorAll(".card")

@@ -11,7 +11,7 @@ $bview = new BookView;
     <meta charset="UTF-8">
     <title>User home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
     <script src="../src/js/change_pass.js" defer></script>
@@ -35,7 +35,7 @@ $bview = new BookView;
         <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
         <p class="nav_button" id="_btn"><i class="fa-regular fa-envelope"></i></p>
 
-        <p  class="nav_button menu">
+        <p class="nav_button menu">
             <i class="fa-solid fa-ellipsis-vertical menu"></i>
         </p>
         <div id="menu_opt_con">
@@ -54,23 +54,17 @@ $bview = new BookView;
         </div>
     </nav>
 
-    <h2>recomended</h2>
-    <div id="recommended_container" class="card_con book_btn">
-        <?php $bview->new_release_books() ?>
-    </div>
+    <?php
+    $bview->new_release_books();
+    $bview->new_books();
+    $bview->new_release_books();
+    ?>
 
-    <div id="new_release_container" class="card_con book_btn">
-        <?php $bview->new_release_books() ?>
-    </div>
-
-    <div id="new_container" class="card_con book_btn">
-        <?php $bview->new_books() ?>
-    </div>
 
     <!-- hidden sections -->
-    
-    <?php 
-        include view("book_preview_change_pass_forms");
+
+    <?php
+    include view("book_preview_change_pass_forms");
     ?>
 
 </body>

@@ -1,27 +1,23 @@
 //references ################################################################
-let add_staff = document.querySelector('#add_staff'),
+const add_staff = document.querySelector('#add_staff'),
     add_book = document.querySelector('#add_book'),
     add_user = document.querySelector('#add_user'),
-    burrow_btn = document.querySelector("#borrow_book"),
-    return_btn = document.querySelector("#return_book")
+    transaction_btn = document.querySelector("#add_transaction")
 
 
-let user_form_con = document.querySelector('#user_regis'),
+const user_form_con = document.querySelector('#user_regis'),
     staff_form_con = document.querySelector('#staff_regis'),
     book_form_con = document.querySelector('#book_regis'),
-    burrow_form_con = document.querySelector("#borrow"),
-    return_form_con = document.querySelector("#return")
+    transaction_form_con = document.querySelector("#transaction")
 
-let user_form = document.querySelector("#user_regis form"),
+const user_form = document.querySelector("#user_regis form"),
     staff_form = document.querySelector('#staff_regis form'),
     book_form = document.querySelector('#book_regis form'),
-    burrow_form = document.querySelector("#borrow form"),
-    return_form = document.querySelector("#return form")
+    transaction_form = document.querySelector("#transaction form")
 
 //references #################################################################
 
-setup_form_ev(return_form_con, return_form, return_btn, () => { setup_book_transaction_form(return_form) },['re'])
-setup_form_ev(burrow_form_con, burrow_form, burrow_btn, () => { setup_book_transaction_form(burrow_form) },['bo'])
+setup_form_ev(transaction_form_con, transaction_form, transaction_btn, () => { setup_book_transaction_form(transaction_form) },['transaction_form'])
 setup_form_ev(user_form_con, user_form, add_user, () => { setup_regis_form(user_form) },['user_form'])
 setup_form_ev(staff_form_con, staff_form, add_staff, () => { setup_regis_form(staff_form) },['staff_form'])
 setup_form_ev(book_form_con, book_form, add_book, () => { setup_regis_form(book_form) },['book_form'])

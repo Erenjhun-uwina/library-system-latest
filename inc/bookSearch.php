@@ -8,17 +8,21 @@ $title = $_POST['book_search'];
 $ctr = new BookCtrl;
 $view = new BookView;
 
-$resut = $ctr->select_data("Title LIKE ?","%$title%");
+$result = $ctr->select_data("Title LIKE ?","%$title%");
 
-$resut = $resut->fetch_all(MYSQLI_ASSOC);
+$result = $result->fetch_all(MYSQLI_ASSOC);
 
-usort($resut,"keywordpos");
+usort($result,"keywordpos");
 
 
-
-foreach($resut as $row){
+if(!$result){
+    echo "<p>no result</p>";
+    return;
+}
+foreach($result as $row){
     $view->book_search_res($row);
 }
+
 
 
 
