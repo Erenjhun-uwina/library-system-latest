@@ -14,7 +14,6 @@ $bview = new BookView;
 
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
-    <script src="../src/js/change_pass.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
     <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
@@ -22,49 +21,16 @@ $bview = new BookView;
 </head>
 
 <body>
-    <nav id="top_nav">
-
-        <div id="search_con">
-            <input id="book_search" type="text" placeholder="search" name="book_search">
-            <div id="search_res">
-            </div>
-        </div>
-
-
-        <img class="nav_button" src="../src/assets/logo.png">
-        <p class="nav_button"><i class="fa-regular fa-calendar"></i></p>
-        <p class="nav_button" id="_btn"><i class="fa-regular fa-envelope"></i></p>
-
-        <p class="nav_button menu">
-            <i class="fa-solid fa-ellipsis-vertical menu"></i>
-        </p>
-        <div id="menu_opt_con">
-            <p id="about_us">about us</p>
-            <p id="logout">logout</p>
-            <p id="update_pass">update password</p>
-        </div>
-
-
-
-    </nav>
-
-    <nav id="side_nav">
-        <div>
-            <span><?php echo $view->full_name($_SESSION['id']) ?></span>
-        </div>
-    </nav>
-
-    <?php
-    $bview->new_release_books();
+<?php 
+    require view("top_nav");
+    require view("side_nav"); 
     $bview->new_books();
-    $bview->new_release_books();
+    $bview->new_release_books()
     ?>
-
-
     <!-- hidden sections -->
-
     <?php
-    include view("book_preview_change_pass_forms");
+    require view("about_us");
+    require view("book_preview_change_pass_forms");
     ?>
 
 </body>

@@ -6,11 +6,13 @@ $studno = $_POST['Studno'];
 $fn = $_POST['fn'];
 $ln = $_POST['ln'];
 
+
 $grdsec = $_POST['grade/section'];
 $email = $_POST['email'];
 $connum = $_POST['contact_no'];
 $ctrl = new UserCtrl;
 
+sleep(5);
 echo create();
 
 function is_available(){
@@ -29,8 +31,7 @@ function create()
 
     if ($is_avail===true) {
         $id = $ctrl->create($fn, $ln, $studno, $studno, $grdsec, $email, $connum);
-        if ($id)return "success";
+        if($id)return "success";
     }
-
     return $is_avail;
 }

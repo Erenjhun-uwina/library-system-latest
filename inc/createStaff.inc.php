@@ -10,7 +10,7 @@ $uname = $_POST['username'];
 $ctrl = new StaffCtrl;
 $s = $ctrl;
 
-
+sleep(5);
 echo create();
 
 
