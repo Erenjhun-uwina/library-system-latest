@@ -22,15 +22,15 @@ $bview = new BookView;
 
 <body>
 <?php 
-    require view("top_nav");
-    require view("side_nav"); 
+    get_temp("top_nav");
+    get_temp("side_nav",["view"=>$view]);
     $bview->new_books();
     $bview->new_release_books()
     ?>
     <!-- hidden sections -->
     <?php
-    require view("about_us");
-    require view("book_preview_change_pass_forms");
+    get_temp("about_us");
+    get_temp("book_preview_change_pass_forms",["view"=>$view,"bview"=>$bview]);
     ?>
 
 </body>

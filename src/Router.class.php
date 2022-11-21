@@ -2,20 +2,19 @@
 
 class Router
 {
-
-    private array $handlers = [];
+    private static array $handlers = [];
     private const M_POST = 'POST';
     private const M_GET = 'GET';
-    private  $notFoundHandler;
+    private static $notFoundHandler;
 
-    public function get(string $path, callable $handler): void
+    public static  function get(string $path, callable $handler): void
     {
-        $this->addHandler(self::M_GET, $path, $handler);
+       self::addHandler(self::M_GET, $path, $handler);
     }
 
     private function addHandler(string $method, string $path, callable $handler)
     {
-        $this->handlers[$method . $path] = [
+        self::$handlers[$method . $path] = [
             'path' => $path,
             'method' => $method,
             'handler' => $handler,
@@ -23,12 +22,12 @@ class Router
     }
 
 
-    public function add_not_found_handler(callable $handler)
-    {
-        $this->notFoundHandler = $handler;
+    public static function add_not_found_handler(callable $handler)
+    {   
+        self::$notFoundHandler = $handler;
     }
 
-    public function run(): void
+    public static function run(): void
     {
 
         $req_uri = parse_url($_SERVER['REQUEST_URI']);
@@ -43,13 +42,13 @@ class Router
 
         $callback = null;
 
-        foreach ($this->handlers as $handler) {
+        foreach (self::$handlers as $handler) {
             if ($handler['path'] === $req_path and $handler['method'] === $method) $callback = $handler['handler'];
         }
 
         if ($callback === null) {
             header('HTTP/1.0 404 NOT FOUND');
-            $callback = $this->notFoundHandler;
+            $callback = self::$notFoundHandler;
         }
 
 
@@ -59,8 +58,12 @@ class Router
     }
 }
 
+function get_temp(string $path,$args=null){
+    extract(gettype($args)=="array"?$args:[$args]);
+    include "../public/templates/$path.phtml";
+}   
 
-function view(string $path){
-    $path = "./templates/".$path.".phtml";
-    return $path;
+function view($path,$args=null){
+    extract(gettype($args)=="array"?$args:[$args]);
+    include "../public/views/$path.phtml";
 }

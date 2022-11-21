@@ -34,7 +34,7 @@ function check_pass(): bool
 function update_pass(): void
 {
     global $ctrl, $newpass;
-    $ctrl->update("Password = ?", $newpass, $_SESSION['id']);
+    $ctrl->update("Password = ?","Id= ?",[$newpass, $_SESSION['id']]);
 }
 
 function new_ctrl()

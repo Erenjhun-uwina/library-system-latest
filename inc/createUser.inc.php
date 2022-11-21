@@ -12,7 +12,6 @@ $email = $_POST['email'];
 $connum = $_POST['contact_no'];
 $ctrl = new UserCtrl;
 
-sleep(5);
 echo create();
 
 function is_available(){

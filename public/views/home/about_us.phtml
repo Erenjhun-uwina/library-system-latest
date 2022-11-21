@@ -1,6 +1,5 @@
 <?php
-
-$view = new AdminView;
+    $view = new AdminView;
 $bview = new BookView;
 ?>
 
@@ -15,43 +14,27 @@ $bview = new BookView;
     <title>Admin home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="../src/js/forms.js" defer></script>
-    <script src="../src/js/regis_forms.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
-    <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
     <script src="../src/js/nav_btns.js" defer></script>
-   
+
 </head>
 
 <body>
-    <?php 
+    <?php
     get_temp("top_nav");
-    get_temp("side_nav",["view"=>$view]); 
-    $bview->new_books();
-    $bview->new_release_books()
     ?>
+
+    <h1>About us</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error minima, alias, laudantium est repellat doloremque nemo vel commodi deserunt aliquid quaerat ad sit vitae maxime consectetur possimus neque.</p>
+
 
     <!-- hidden sections -->
 
     <?php
     get_temp('loading_pop');
-    get_temp("transaction_form");
     get_temp("book_preview_change_pass_forms",["view"=>$view,"bview"=>$bview]);
-    get_temp("user_book_forms");
     ?>
-
-    <section id="staff_regis" class="regis_form_con">
-        <form data-type="createStaff">
-            <h1>Staff Registration</h1>
-            <hr>
-            <input type="text" name="fn" placeholder="First Name" required>
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="text" name="ln" placeholder="Last Name" required>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <Button type="submit">Create</Button>
-        </form>
-    </section>
-
 </body>
 
 </html>

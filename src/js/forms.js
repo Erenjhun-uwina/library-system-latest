@@ -1,13 +1,11 @@
 
 const forms = []//wtf is the past tense of setup??????? and wtf is the spelling of pastense wtffffffffffffff
 const states = []
-
-
 let search_params = new URL(location).searchParams;
 
 
 let loading_pop = document.querySelector('#loading_pop')
-loading_pop.addEventListener("transitionend", () => {
+if(loading_pop)loading_pop.addEventListener("transitionend", () => {
     display_none(loading_pop)
 })
 
@@ -47,6 +45,7 @@ function setup_form_ev(form_con, form, btn, callback = () => { }, state) {
 
     btn.onclick = () => {
         show_pop(form_con)
+        if(!state)return
         const st = {}
         st[state[0]] = "open"
         set_search_param(st)
@@ -54,27 +53,25 @@ function setup_form_ev(form_con, form, btn, callback = () => { }, state) {
 
     form_con.onclick = (ev) => {
         hide_pop(form_con, ev)
-        set_search_param()
+        if(ev.target == form_con)set_search_param()
     }
 
     forms.push(form)
     if (state) states.push([state, btn])
 
-
-   
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault()
 
         if (form.validating) return
         form.validating = true
-        reset_forms()
+        
         show_pop(loading_pop,"block")
         await callback()
+        reset_forms()
         hide_pop(loading_pop)
         form.validating = false
     });
 }
-
 
 function setup_borrow_form(form_con, form, callback) {
 
@@ -99,7 +96,6 @@ function setup_borrow_form(form_con, form, callback) {
         form.validating = false
     });
 }
-
 
 /**
  * 
@@ -160,7 +156,6 @@ function hide_pop(elem, ev) {
 function show_pop(elem,display = "table") {
     elem.style.display = display
     elem.style.opacity = "1"
-    console.log(elem.style.opacity);
 }
 
 function set_search_param(params) {
@@ -176,6 +171,7 @@ function set_search_param(params) {
     }
     history.replaceState({}, '', url.pathname)
 }
+
 /**
  * resets all forms (setuped){the fuck is the pastense of that word????} by setup_form_ev function
  * resets all forms what do you expect???ahhahahahahah

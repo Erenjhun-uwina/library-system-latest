@@ -23,8 +23,8 @@ $bview = new BookView;
 
 
     <?php
-    require view("top_nav");
-    require view("side_nav");
+    get_temp("top_nav");
+    get_temp("side_nav",["view"=>$view]);
     $bview->new_books();
     $bview->new_release_books()
     ?>
@@ -32,10 +32,10 @@ $bview = new BookView;
     <!-- hidden sections -->
 
     <?php
-    // require view("about_us");
-    include view("transaction_form");
-    include view("book_preview_change_pass_forms");
-    include view("user_book_forms");
+    // get_temp("about_us");
+    get_temp("transaction_form");
+    get_temp("book_preview_change_pass_forms",["view"=>$view,"bview"=>$bview]);
+    get_temp("user_book_forms");
     ?>
 
 
