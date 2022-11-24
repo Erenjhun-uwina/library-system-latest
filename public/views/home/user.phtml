@@ -10,7 +10,7 @@ $bview = new BookView;
     <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
     <meta charset="UTF-8">
     <title>User home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../src/style/all.min.css">
 
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
@@ -20,18 +20,31 @@ $bview = new BookView;
     <script src="../src/js/nav_btns.js" defer></script>
 </head>
 
+
 <body>
-<?php 
-    get_temp("top_nav");
-    get_temp("side_nav",["view"=>$view]);
-    $bview->new_books();
-    $bview->new_release_books()
-    ?>
-    <!-- hidden sections -->
+
+
+    <?= get_temp("top_nav"); ?>
+
+    <main>
+
+        <?= get_temp("side_nav", ["view" => $view]); ?>
+
+        <section class="main_con">
+
+            <div>
+                <?= $bview->new_release_books(); ?>
+                <?= $bview->recomended(); ?>
+            </div>
+        </section>
+    </main>
+    <!--  hidden sections -->
+
     <?php
-    get_temp("about_us");
-    get_temp("book_preview_change_pass_forms",["view"=>$view,"bview"=>$bview]);
+    get_temp('loading_pop');
+    get_temp("book_preview_change_pass_forms", ["view" => $view, "bview" => $bview]);
     ?>
+    
 
 </body>
 

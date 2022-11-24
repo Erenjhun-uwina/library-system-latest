@@ -7,6 +7,7 @@ const book_prev = {
     title: document.querySelector("#book_prev_title"),
     author: document.querySelector("#book_prev_author"),
     date: document.querySelector("#book_prev_date"),
+    code: document.querySelector('#book_prev_button p')
 }
 
 const book_btns = document.querySelectorAll('.book_btn');
@@ -17,7 +18,6 @@ const book_btns = document.querySelectorAll('.book_btn');
         book.onclick = () => {
             show_prev(book.dataset.id)
         }
-
 
     })
 })

@@ -6,7 +6,11 @@ RewriteEngine on
 RewriteBase /xampp/library-system-latest/public/  
 
 
+RewriteRule ^transaction/(.*)$ transaction?code=$1 
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+
 RewriteRule ^(.*)$ app.php
 

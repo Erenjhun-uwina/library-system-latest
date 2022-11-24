@@ -1,7 +1,5 @@
-
-
 <nav id="side_nav">
-    <div>
+    <div >
         <span>
             <?php
             $sid =  $_SESSION['id'];
@@ -10,11 +8,15 @@
             if ($acc_type == 'admin') echo $view->username($sid);
             else echo $view->full_name($sid);
             ?>
+
         </span>
+        <i class="fa-solid fa-home"></i>
     </div>
 
-    <?php
+  
 
+    <?php
+    if ($acc_type == "user") echo '<div id="shelf"><span>Shelf</span><i class="fa-solid fa-book-open-reader"></i></div>';
     if ($acc_type == 'admin') echo '<div id="add_staff"><span>Staff</span><i class="fa-solid fa-circle-plus"></i></div>';
     if ($acc_type == 'staff' || $acc_type == 'admin') echo ' <div id="add_user"><span>User</span><i class="fa-solid fa-circle-plus"></i></div>
                                                             <div id="add_book"><span>Book</span><i class="fa-solid fa-circle-plus"></i></div>

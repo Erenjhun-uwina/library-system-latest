@@ -1,4 +1,3 @@
-
 <section id="book_preview" class="regis_form_con">
 
     <form>
@@ -15,22 +14,23 @@
 
         </section>
         <div id="book_prev_button">
-            <?php if ($_SESSION['acc_type'] == 'user') echo "<button> burrow </button>"; ?>
+            <?php 
+                if ($_SESSION['acc_type'] == 'user') {
+                    if(  strpos( $_SERVER['REQUEST_URI'],"user/shelf") === false ) echo "<button> burrow </button>";
+                    else echo " <p> code : </p>";
+                } 
+            ?>
         </div>
         <hr>
-        <div id="book_related">
-            <p>Related books...</p><br>
-        </div>
+    
+        <?php if( strpos( $_SERVER['REQUEST_URI'],"user/shelf") === false ) $bview->related_searches() ?>
 
-        <section id="book_recomendation" class="card_con book_btn">
-            <?php $bview->related_searches() ?>
-        </section>
     </form>
 </section>
 
 <section id="change_pass" class="regis_form_con">
     <form>
-        <span><?php echo $view->Username($_SESSION['id']) ?></span><br>
+        <span><?= $view->Username($_SESSION['id']) ?></span><br>
         <input type="text" placeholder="Old password" name="old_pass" required><br>
         <input type="password" placeholder="New password" name="new_pass" required><br>
         <input type="password" placeholder="Confirm password" name="pass" required><br>

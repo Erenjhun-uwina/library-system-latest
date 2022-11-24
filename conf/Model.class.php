@@ -47,23 +47,24 @@ class Model
 
         } catch ( Exception $err) {
            $this->kill();
-           throw $err;
+           echo $err;
         }
     }
 
-    public function select_data(String $where, $vals)
+    public  function select_data(String $where, $vals=[])
     {
         try {
             $this->open();
 
-            $val = (gettype($vals) == "array") ? $vals : array($vals);
 
+            $val = (gettype($vals) == "array") ? $vals : [$vals];
+            $val = (!empty($val) and $val[0])?$val:[];
 
             $query = "SELECT * FROM " . $this->default_db . " WHERE $where";
           
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bind_param(str_repeat('s', count($val)), ...$val);
+            if(count($val)>0)$stmt->bind_param(str_repeat('s', count($val)), ...$val);
             $stmt->execute();
 
             $result = $stmt->get_result();
@@ -73,9 +74,11 @@ class Model
             return $result;
         } catch (Exception $err) {
             $this->kill();
-            throw $err;
+            echo $err;
         }
     }
+
+    
 
     public function update(string $fields, string $where, $vals)
     {
@@ -86,14 +89,19 @@ class Model
             $vals = gettype($vals)=='array'?$vals:[$vals];
             $params = $vals;
 
-            $query = $this->conn->prepare("UPDATE ".$this->default_db." SET $fields WHERE $where");
+            $query ="UPDATE ".$this->default_db." SET $fields WHERE $where" ;
+            
+            $stmt = $this->conn->prepare($query);
+            
+            // echo $query;
 
-            $query->bind_param(str_repeat('s', count($vals)), ...$params);
-            $query->execute();
+            $stmt->bind_param(str_repeat('s', count($vals)), ...$params);
+            $stmt->execute();
             $this->kill();
+            return true;
         } catch (Exception $err) {
             $this->kill();
-            throw $err;
+            echo $err;
         }
     }
 
@@ -110,10 +118,11 @@ class Model
             $query->execute();
 
             $this->kill();
+            return true;
         } catch (Exception $err) {
 
             $this->kill();
-            throw $err;
+            echo $err;
         }
     }
 

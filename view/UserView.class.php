@@ -14,4 +14,6 @@ class UserView extends UserCtrl{
         $user  = $this->select_data("Id = ?",$id)->fetch_assoc();
         echo $user['Student_no'];
     }
+
+    
 }                                                              

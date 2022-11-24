@@ -1,7 +1,17 @@
 <?php
-
-$view = new AdminView;
+$view = new UserView;
 $bview = new BookView;
+
+$tctrl = new TransactionCtrl;
+
+$transactions = $tctrl->select_data("Borrower = ?", $_SESSION['id']);
+
+$books = [];
+
+while ($book = $transactions->fetch_assoc()) {
+    array_push($books, $book['Book']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -9,47 +19,33 @@ $bview = new BookView;
 
 <head>
     <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
-
     <meta charset="UTF-8">
+    <title>User Shelf</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Admin home</title>
-    <link rel="stylesheet" href="../src/style/all.min.css">
     <script src="../src/js/forms.js" defer></script>
     <script src="../src/js/regis_forms.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
     <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
     <script src="../src/js/nav_btns.js" defer></script>
-
 </head>
 
+
 <body>
-
-
     <?= get_temp("top_nav"); ?>
-
     <main>
-
         <?= get_temp("side_nav", ["view" => $view]); ?>
 
         <section class="main_con">
-
             <div>
-                <?= $bview->new_release_books(); ?>
+                <?= $bview->borrowed_books($books); ?>
             </div>
         </section>
     </main>
     <!--  hidden sections -->
 
-    <?php
-    get_temp('loading_pop');
-    get_temp("transaction_form");
-    get_temp("book_preview_change_pass_forms", ["view" => $view, "bview" => $bview]);
-    get_temp("user_book_forms");
-    get_temp("staff_regis_form");
-    ?>
-
-
+    <?= get_temp("book_preview_change_pass_forms", ["view" => $view, "bview" => $bview]); ?>
 
 </body>
 

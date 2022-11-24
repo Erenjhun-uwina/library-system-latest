@@ -5,8 +5,9 @@ let search_params = new URL(location).searchParams;
 
 
 let loading_pop = document.querySelector('#loading_pop')
-if(loading_pop)loading_pop.addEventListener("transitionend", () => {
+if (loading_pop) loading_pop.addEventListener("transitionend", () => {
     display_none(loading_pop)
+    console.log("done loading");
 })
 
 function resume_state() {
@@ -43,29 +44,38 @@ function setup_form_ev(form_con, form, btn, callback = () => { }, state) {
         display_none(form_con)
     })
 
-    btn.onclick = () => {
-        show_pop(form_con)
-        if(!state)return
-        const st = {}
-        st[state[0]] = "open"
-        set_search_param(st)
+    if (btn) {
+        btn.onclick = () => {
+            show_pop(form_con)
+        }
     }
 
     form_con.onclick = (ev) => {
         hide_pop(form_con, ev)
-        if(ev.target == form_con)set_search_param()
     }
-
     forms.push(form)
-    if (state) states.push([state, btn])
+    setup_form_onsubmit(form, callback)
+}
+/**
+ * 
+ * setups forms onsubmit functions
+ * and automaticaly opens and closes loading pop
+ * @param {*} form 
+ * @param {*} callback 
+ * @return void
+ */
+async function setup_form_onsubmit(form, callback) {
+
+
+    if (!form) return console.warn("form passed is not defined.. :" + form)
 
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault()
 
         if (form.validating) return
         form.validating = true
-        
-        show_pop(loading_pop,"block")
+
+        show_pop(loading_pop, "block")
         await callback()
         reset_forms()
         hide_pop(loading_pop)
@@ -84,17 +94,7 @@ function setup_borrow_form(form_con, form, callback) {
     form_con.onclick = (ev) => {
         hide_pop(form_con, ev)
     }
-
-    form.addEventListener("submit", async (ev) => {
-        ev.preventDefault()
-
-        if (form.validating) return
-        form.validating = true
-        show_pop(loading_pop,"block")
-        callback()
-        hide_pop(loading_pop)
-        form.validating = false
-    });
+    setup_form_onsubmit(form, callback)
 }
 
 /**
@@ -102,9 +102,9 @@ function setup_borrow_form(form_con, form, callback) {
  * @param {int} el id of the book being fetch
  */
 async function show_prev(book_id) {
-    
+
     const id = Number(book_id)
-    if(typeof id != "number")throw new Error('show_prev first param must be type of int. '+typeof id +" given")
+    if (typeof id != "number") throw new Error('show_prev first param must be type of int. ' + typeof id + " given")
     const book_details = await fetch_book_details(id)
     if (!book_details) return console.warn('undefined book')
 
@@ -115,7 +115,8 @@ async function show_prev(book_id) {
     book_prev.title.innerText = `"${book_details.Title}"`
     book_prev.author.innerText = `-${book_details.Author}`
     book_prev.date.innerText = book_details.Date_release
-
+    if (book_prev.code) book_prev.code.innerText = "CODE : " + book_details.Code
+  
 
     book_prev.img.parentElement.style.setProperty("--bg", "url(" + location.origin + "/xampp/library-system-latest/" + img_path + book_details.Cover_img + ")")
     show_pop(book_prev.con)
@@ -138,7 +139,6 @@ async function fetch_book_details(id) {
         method: "post",
         body: fdata
     })
-
     data = await data.json()
     return data
 }
@@ -150,10 +150,10 @@ function display_none(elem) {
 }
 
 function hide_pop(elem, ev) {
-    if(!ev || ev.target == elem) elem.style.opacity = "0"
+    if (!ev || ev.target == elem) elem.style.opacity = "0"
 }
 
-function show_pop(elem,display = "table") {
+function show_pop(elem, display = "table") {
     elem.style.display = display
     elem.style.opacity = "1"
 }

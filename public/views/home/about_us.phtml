@@ -1,40 +1,55 @@
 <?php
-    $view = new AdminView;
+$view = $_SESSION['acc_type'] == 'admin' ? new AdminView : new StaffView;
 $bview = new BookView;
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
-
     <meta charset="UTF-8">
 
     <title>Admin home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../src/style/all.min.css">
     <script src="../src/js/forms.js" defer></script>
+    <script src="../src/js/regis_forms.js" defer></script>
     <script src="../src/js/logout.js" defer></script>
+    <script src="../src/js/book_prev.js" defer></script>
     <script src="../src/js/search.js" defer></script>
     <script src="../src/js/nav_btns.js" defer></script>
 
 </head>
 
 <body>
-    <?php
-    get_temp("top_nav");
-    ?>
 
-    <h1>About us</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error minima, alias, laudantium est repellat doloremque nemo vel commodi deserunt aliquid quaerat ad sit vitae maxime consectetur possimus neque.</p>
+    <?= get_temp("top_nav"); ?>
 
+    <main>
 
-    <!-- hidden sections -->
+        <?= get_temp("side_nav", ["view" => $view]); ?>
 
-    <?php
-    get_temp('loading_pop');
-    get_temp("book_preview_change_pass_forms",["view"=>$view,"bview"=>$bview]);
-    ?>
+        <section class="main_con">
+            <div>
+                <h1>About us</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo cumque vel placeat, commodi esse, sapiente repellendus explicabo totam, assumenda itaque rerum aliquam fugiat pariatur. Aliquid quisquam nisi dignissimos aspernatur voluptatibus velit provident ipsam! Similique consectetur facere natus sit mollitia expedita veniam maxime, quaerat modi nisi eius, vitae labore, nihil quas. Totam tenetur quis animi illum, nesciunt dolores dolorum dolor soluta, inventore modi quod quaerat, laborum voluptatem eum voluptatum saepe nihil adipisci harum alias. Quis eaque magni nostrum ea aperiam rem, dolore ab libero dolorum. Adipisci nesciunt corrupti tempore vel ab placeat neque dolore sapiente expedita est error, quis dolorum harum esse officia in dolorem ratione modi voluptatibus ipsum quo repudiandae ut, distinctio facilis. Nulla sit molestiae quaerat dolorem illum repudiandae quam, iste quidem eveniet, tempora architecto nobis, fugiat tempore et maiores blanditiis delectus amet aliquid. Nemo recusandae illum modi pariatur qui doloribus autem, incidunt perferendis natus facilis nisi porro ad nobis soluta aut repellendus minima error, nam, fugiat non odit? Officiis at hic dolor consectetur voluptas maxime voluptate odit! Voluptatem magni laboriosam ratione vel nesciunt eligendi. Quia ex minus quo quisquam eius distinctio odit perspiciatis expedita, tempore iste aspernatur, doloremque optio dolor fugit est. Facere aut perspiciatis suscipit nobis voluptate.
+                </p>
+            </div>
+        </section>
+
+        <!-- hidden sections -->
+
+        <?php
+        get_temp('loading_pop');
+        get_temp("transaction_form");
+        get_temp("book_preview_change_pass_forms", ["view" => $view, "bview" => $bview]);
+        get_temp("user_book_forms");
+        if ($_SESSION['acc_type'] == 'admin') get_temp("staff_regis_form");
+        ?>
+    </main>
 </body>
 
 </html>

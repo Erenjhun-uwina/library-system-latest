@@ -2,7 +2,6 @@
 
 class BookCtrl extends Control
 {   
-
     public function __construct() {
         parent::__construct("books");
     }

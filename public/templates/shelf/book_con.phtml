@@ -1,0 +1,13 @@
+<span class="card_label"> <?= $label ?> </span>
+<div id=<?= $con_id ?> class="card_con book_btn">
+
+    <?php
+    while ($book = $books->fetch_assoc()) {
+
+        $src = "../src/assets/covers/" . $book['Cover_img'] . "";
+
+        get_temp("book/book_card", ['src' => $src, "book" => $book]);
+    }
+    ?>
+
+</div>

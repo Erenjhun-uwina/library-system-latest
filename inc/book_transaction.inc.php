@@ -9,7 +9,10 @@ $tctrl = new TransactionCtrl;
 
 $res= $tctrl->select_data('Code=?',$code)->fetch_assoc();
 
-$transaction_details = json_encode($res);
 
+$status = $res['Status'];
+$new_status = ($status=="unresolved")?"lent":"returned";
 
-print_r($transaction_details);
+$response = $tctrl->update("Status=?","Code=?",[$new_status,$code]);
+
+if($response)echo "success";

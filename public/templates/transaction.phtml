@@ -1,0 +1,38 @@
+<?php
+
+$btn_placeholders = [
+    "unresolved" => "lend",
+    "lent" => "return",
+    "returned" => "returned"
+];
+
+$btn = $btn_placeholders[$transaction['Status']];
+?>
+
+
+<div id="transaction_con" class="con">
+    <div id="book_details">
+        <div id="img_con">
+            <img src=<?= "../src/assets/covers/" . $book['Cover_img'] ?> alt="book cover">
+        </div>
+
+        <span id="title">TITLE : <?= $book['Title'] ?></span>
+    </div>
+
+    <div id="details">
+        <form id="transaction_prev_form">
+            <input type="hidden" name="transaction_code" value= <?= $code ?>>
+            
+            <span id="code">Code : <?= $code ?></span><br>
+            <span id="date">Borrow date : <?= $transaction['Date'] ?></span><br>
+            <span>Borrower : <?= $borrower['FN'] . " " . $borrower['LN'] ?></span><br>
+           
+
+                <?php
+                if ($btn == "returned") echo "<br>  STATUS : resolved";
+                else echo "<button>" . $btn . "</button>";
+                ?>
+           
+        </form>
+    </div>
+</div>

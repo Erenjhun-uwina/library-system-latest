@@ -1,0 +1,65 @@
+
+
+#transaction_con {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+#transaction_con form {
+    display: block;
+    position: absolute;
+    width: 100%;
+    right: -10rem;
+}
+
+#book_details {
+    padding: 2vw;
+    background: #322f2e;
+    min-width: 40%;
+    text-align: center;
+    min-height: 100%;
+    border-radius: 10px;
+}
+
+#title {
+    font-size: 1.4vw;
+    font-weight: bold;
+}
+
+#img_con img {
+    width: 10rem;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: .5rem .5rem #7e4733;
+}
+
+#details {
+    background: #ddd;
+    padding: 2rem;
+    margin: .5rem;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    position: relative;
+    width: 80%;
+    color: #322f2e;
+}
+
+#invalid {
+    font-size: 3rem;
+    text-align: center;
+}
+
+#invalid span {
+    display: inline-block;
+    margin-bottom: 6rem;
+}
+
+#invalid i {
+    margin-top: 5rem;
+    font-size: 6rem;
+}
+
+#code {
+    user-select: text;
+}

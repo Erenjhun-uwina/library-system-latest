@@ -20,7 +20,7 @@ const dropdown = {
     }
 }
 
-about_us_btn.onclick = ()=>location.href = "./about_us"
+about_us_btn.onclick = ()=>location.href = "../home/about_us"
 
 menu_btn.onclick = (ev) => {
     dropdown.toggle(menu)
@@ -36,14 +36,20 @@ window.onclick = ev => {
     return false
 }
 
-let change_pass_con = document.querySelector('#change_pass'),
+const change_pass_con = document.querySelector('#change_pass'),
     change_pass_form = document.querySelector('#change_pass form'),
     change_pass_btn = document.querySelector('#update_pass'),
-    change_pass_new = document.getElementsByName("new_pass")[0],
+    change_pass_new = document.getElementsByName("new_pass")[0],                             
     change_pass_confirm = document.getElementsByName("pass")[0]
 
 setup_form_ev(change_pass_con, change_pass_form, change_pass_btn, change_pass_cb);
 
+
+const home_btn = document.querySelector("#side_nav div")
+const shelf_btn = document.querySelector("#shelf")
+
+set_navigate(home_btn,"../home")
+set_navigate(shelf_btn,"../user/shelf")
 
 async function change_pass_cb() {
     let fdata = new FormData(change_pass_form);
@@ -77,4 +83,8 @@ function validate_new_confirm() {
     change_pass_form.style.border = "2px solid red"
 }
 
+function set_navigate(btn,path){
+    if(!btn)return console.warn("undefined btn elem")
+    btn.onclick = ()=>location.href = path
+}
 

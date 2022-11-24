@@ -15,7 +15,7 @@ h1 {
     user-select: none;
 }
 
-a{
+.link_btn{
     user-select: none;
     text-decoration: none;
     font-size: 2rem;
@@ -23,6 +23,8 @@ a{
     background: #4c4745;
     padding:.5rem 1rem;
     border-radius: 10px;
+    margin-top: 5rem;
+    display: inline-block;
 }
 
 div {
@@ -42,10 +44,9 @@ div {
     width: 90%;
 }
 
-p{
+p,a{
     font-size: 1.5rem;
     margin: 1rem;
-    margin-bottom: 5rem;
 }
 
 #home {

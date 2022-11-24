@@ -7,6 +7,11 @@ class Router
     private const M_GET = 'GET';
     private static $notFoundHandler;
 
+
+    public static function find($method_path){
+        return array_key_exists($method_path,self::$handlers);
+    }
+
     public static  function get(string $path, callable $handler): void
     {
        self::addHandler(self::M_GET, $path, $handler);
@@ -43,7 +48,7 @@ class Router
         $callback = null;
 
         foreach (self::$handlers as $handler) {
-            if ($handler['path'] === $req_path and $handler['method'] === $method) $callback = $handler['handler'];
+            if (($handler['path'] === $req_path or $handler['path'] === $req_path) and $handler['method'] === $method) $callback = $handler['handler'];
         }
 
         if ($callback === null) {

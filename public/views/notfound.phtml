@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-
 
 <head>
     <title>Not found</title>
@@ -25,10 +22,26 @@
         <h1>Not Found</h1>
         <i class="fa-solid fa-triangle-exclamation fa-beat"></i>
         <p>
-            <?php echo "cannot find ".$_SERVER['REQUEST_URI'];?>
+            <?= "cannot find " . $_SERVER['REQUEST_URI']; ?>
         </p>
-    
-        <a href="../home">go to home</a>
+
+        <?php
+        $page = rtrim($_SERVER['REQUEST_URI'], "/");
+        $req_uri = parse_url($_SERVER['REQUEST_URI']);
+        $path = $req_uri['path'];
+
+        $path_exp = explode("/", $path);
+        $req_index = array_search("library-system-latest", $path_exp) + 1;
+
+        
+
+        $req_path = rtrim("/" . implode("/", array_slice($path_exp, $req_index)), "/");
+
+        if (Router::find("GET" . $req_path)) header("location:".rtrim(implode("/", array_slice($path_exp,0,$req_index)), "/"));
+        ?>
+
+        <br>
+        <a class="link_btn" href=<?= rtrim(implode("/", array_slice($path_exp,0,$req_index)), "/") ?>>go to home</a>
     </div>
 </body>
 

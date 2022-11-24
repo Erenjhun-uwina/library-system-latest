@@ -2,20 +2,24 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Times New Roman', Times, serif;
 }
 
 body {
     background: #7e4733 linear-gradient(#dbcdb2, #7e4733);
     min-height: 100vh;
-    margin: .5rem;
+
 }
 
-input{
+main{
+    display: flex;
+}
+
+input {
     border: 1px solid black;
 }
 
-input:invalid{
+input:invalid {
     border: 1px solid red;
 }
 
@@ -28,6 +32,8 @@ input:invalid{
     align-items: center;
     border-radius: 5px;
     margin: .5rem;
+    border-bottom: .3rem solid #542f22;
+
 }
 
 #search_con {
@@ -39,6 +45,19 @@ input:invalid{
     justify-content: center;
 }
 
+#search_con i{
+    background:linear-gradient(90deg,#0000,#ffff);
+    height: 100%;
+    margin-block: auto;
+    display: inline-flex;
+    align-items: center;
+    padding-right: 1rem;
+    padding-left: 5rem;
+    border-radius: 0 100px 100px 0px;
+    position: absolute;
+    right: 0;
+}
+
 #search_con input {
     width: 100%;
     height: 100%;
@@ -47,7 +66,7 @@ input:invalid{
     border-radius: 100px;
     font-size: 1rem;
     padding-left: .5rem;
-}
+    }
 
 #search_res {
     position: absolute;
@@ -68,20 +87,20 @@ input:invalid{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition:background-color.3s ease-in;
+    transition: background-color.3s ease-in;
 }
 
-#search_res p:hover{
+#search_res p:hover {
     background-color: #ccc;
 }
 
-#search_res .hover{
+#search_res .hover {
     background-color: #ccc;
     border-left: 4px solid rgb(255, 213, 73);
 }
 
 .nav_button {
-    background-color: #fbf5f5;
+    /* background-color: #eee; */
     padding: 1rem;
     gap: 1rem;
     border-radius: 5px;
@@ -94,17 +113,25 @@ input:invalid{
     border-radius: 100%;
 }
 
-img[class=nav_button]{
-    padding:.1rem;
+.nav_button:hover{
+    background-color: #999;
+    color:#fff;
+}
+
+img[class=nav_button] {
+    padding: .1rem;
     border-radius: 15px;
 }
 
-#side_nav {
-    margin: .3rem;
+#side_nav{
+    margin: .5rem;
     text-align: center;
-    float: left;
-    /* background: red; */
-    height: 100vh;
+    width: 20vw;
+    font-size: 1.5vw;
+}
+
+#side_nav div i{
+    margin-block: auto;
 }
 
 #side_nav div {
@@ -112,52 +139,62 @@ img[class=nav_button]{
     border-radius: 5px;
     color: white;
     text-align: center;
-    margin: .5rem;
-    margin-top: 0rem;
-    padding:.5rem;
-    width: 10rem;
-
-    border-radius: 5px;
+    margin: .5rem 0;
+    padding: .5rem;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-between;
-    justify-items: center;
+    align-items: center;
     user-select: none;
+    border-bottom: .3rem solid #322f2e;
+}
+
+
+#side_nav div:hover {
+    background-color: #322f2e;
 }
 
 #side_nav div:first-child {
     background-color: brown;
-    font-size: 1.4rem;
+    font-size: 1.9vw;
     user-select: auto;
+    margin-top: 0;
+    border-bottom: .3rem solid rgb(97, 24, 24);
 }
 
-.card_label{
+#side_nav div:first-child:hover {
+    background-color: rgb(99, 25, 25);
+}
+
+.card_label {
     display: inline-block;
-    margin-top:.2rem;
-    
-    padding: .4rem .2rem .5rem 1rem;
+    margin-top: .2rem;
+
+    padding:.5rem;
     background: #7e4733;
-    min-width:10rem ;
+    min-width: 10rem;
     border-radius: 1rem 1rem 0 0;
-    
     font-weight: bold;
     color: #ccc;
+    transform: translateX(1rem);
 }
 
 .card_con {
-    
+
     display: flex;
-    margin: 0  1rem .5rem;
+    margin: 0 1rem .5rem;
     height: 13rem;
     justify-content: space-evenly;
     background: #322f2e;
-    gap:.5rem;
-    border: .6rem solid brown ;
+    gap: .5rem;
+    border: .6rem solid brown;
+    box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.441);
 }
 
 .card {
-    background:#322f2e;
+    background: #322f2e;
     backdrop-filter: blur(20px);
-    border-radius: 5px;
     width: 100%;
     height: 100%;
     max-width: 8.7rem;
@@ -165,12 +202,12 @@ img[class=nav_button]{
     transition: scale .2s ease-out .2s;
 }
 
-.card:not(.preview)::before{
-    content:"details";
+.card:not(.preview)::before {
+    content: "details";
     position: absolute;
     padding-top: 5rem;
-    top:0;
-    left:-10rem;
+    top: 0;
+    left: -10rem;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -178,15 +215,16 @@ img[class=nav_button]{
     color: white;
     font-size: 3vw;
     font-weight: bold;
-    background: rgba(0,0,0, 0.5);
-    transition:left .2s ease-out .2s;
-    
+    background: rgba(0, 0, 0, 0.5);
+    transition: left .2s ease-out .2s;
+
 }
 
-.card:hover::before{
-    left:0;
+.card:hover::before {
+    left: 0;
 }
-.card:not(.preview):hover{
+
+.card:not(.preview):hover {
     scale: 1.05;
 }
 
@@ -214,7 +252,8 @@ img[class=nav_button]{
 }
 
 
-.regis_form_con,.popup{
+.regis_form_con,
+.popup {
 
     width: 100vw;
     height: 100vh;
@@ -226,11 +265,12 @@ img[class=nav_button]{
     display: none;
 }
 
-.popup{
+.popup {
     z-index: 10000;
 }
 
-form,.popup div {
+form,
+.popup div {
     user-select: none;
     background: white;
     padding: 1rem;
@@ -286,7 +326,7 @@ hr {
     margin-bottom: 1rem;
 }
 
-#menu_opt_con{
+#menu_opt_con {
     top: 4.5rem;
     right: .5rem;
     width: 7rem;
@@ -297,11 +337,11 @@ hr {
     display: none;
 }
 
-#menu_opt_con p{
+#menu_opt_con p {
     font-size: .9rem;
     margin: .1rem 0;
     padding: .3rem .2rem;
-    background:white;
+    background: white;
     user-select: none;
 }
 
@@ -310,33 +350,49 @@ hr {
 }
 
 #book_main_details {
-    background-color:#dbcdb2;
+    background-color: #dbcdb2;
     color: rgba(0, 0, 0);
     width: 100%;
     height: 100%;
     text-align: center;
     user-select: text;
-    margin-left:1rem;
-    padding:1rem;
+    margin-left: 1rem;
+    padding: 1rem;
     border-radius: 5px;
-    
+
     overflow-x: hidden;
     overflow-wrap: break-word;
     overflow-y: auto;
 }
 
-#book_prev_title{
+#book_prev_title {
     font-weight: bold;
     font-size: 2rem;
     user-select: auto;
 }
 
 
-#book_prev_button button{
+#book_prev_button button {
     width: 80%;
     margin: .5rem;
 }
-#book_related{
+
+#book_related {
     background-color: white;
     text-align: left;
 }
+
+section[class = main_con] {
+    width: 90vw;
+   margin: .5rem 1rem;
+}
+
+.con{
+    border-radius: 10px;
+    overflow: hidden;
+    background: #4c4745;
+    color: #ddd;
+    box-shadow: .5rem .5rem #7e4733;
+    height: 60vh;
+}
+

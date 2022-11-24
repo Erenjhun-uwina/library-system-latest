@@ -1,76 +1,58 @@
 <?php
 
-class BookView extends BookCtrl{
+class BookView extends BookCtrl
+{
 
     public function title($id)
     {
-        $book = $this->select_data("Id = ?",$id)->fetch_assoc();
+        $book = $this->select_data("Id = ?", $id)->fetch_assoc();
         echo $book['Title'];
     }
 
-    public function new_books()
+    public function new_release_books()
     {
-        $books = $this->select_data(' ? ORDER BY Id DESC LIMIT 6',1);
+        $query = ' ? ORDER BY Id DESC  LIMIT 6';
 
-        $result = '<span class="card_label">New!!!</span>'.
-        '<div id="new_release_container" class="card_con book_btn">';
-        
-        while ($book = $books->fetch_assoc()) {
-           
-            $src = "../src/assets/covers/".$book['Cover_img']."";
-            
-            $result .= '
-            <div class="card" data-id="'.$book['Id'].'">
-                <img src='.$src.'>
-            </div>';
-        }
-        $result.='</div>';
-        echo $result;
+        $this->view_book_con_temp($query, "new_release_books", "new release", 1);
     }
 
-    public function new_release_books(){
-        $books = $this->select_data(' ? ORDER BY Date_release DESC LIMIT 6',1);
-
-        $result = '<span class="card_label">New release</span>'.
-        '<div id="new_container" class="card_con book_btn">';
-        
-        while ($book = $books->fetch_assoc()) {
-           
-             $src = "../src/assets/covers/".$book['Cover_img']."";
-            
-            $result .= '
-            <div class="card" data-id="'.$book['Id'].'">
-                <img src='.$src.'>
-            </div>';
-        }
-
-        $result .= '</div>';
-
-        echo $result;
+    public function recomended()
+    {
+        // todo display recomended
+        $query = ' ? ORDER BY Date_release DESC LIMIT 6';
+        $this->view_book_con_temp($query, "recomended_books", "recomended", 1);
     }
 
-    public function related_searches(){
-        $books = $this->select_data(' ? ORDER BY Date_release DESC LIMIT 4',1);
-
-        
-
-        $result = "";
-        
-        while ($book = $books->fetch_assoc()) {
-           
-            $src = "../src/assets/covers/".$book['Cover_img']."";
-            
-            $result .= '
-            <div class="card" data-id="'.$book['Id'].'">
-                <img src='.$src.'>
-            </div>';
-        }
-
-        echo $result;
+    public function related_searches()
+    {
+        $query = ' ? ORDER BY Date_release DESC LIMIT 4';
+        $this->view_book_con_temp($query, "releated_books", "related books", 1);
     }
 
     public function book_search_res($row)
-    {   
-        echo "<p data-id=".$row['Id'].">".$row['Title']."</p>";
+    {
+        echo "<p data-id=" . $row['Id'] . ">" . $row['Title'] . "</p>";
     }
-}                                                             
+
+    public function borrowed_books(array $book_ids)
+    {
+        $query = "Id in (" . implode(",", $book_ids) . ")";
+
+        $this->view_book_con_temp($query, "borrowed_con", "borrowed books");
+    }
+
+    private function view_book_con_temp(string $query, string $con_id, string $con_label, $vals = null)
+    {
+
+        $books = $this->select_data($query, $vals);
+
+        get_temp(
+            "book/book_con",
+            [
+                "con_id" => $con_id,
+                "label" => $con_label,
+                "books" => $books
+            ]
+        );
+    }
+}

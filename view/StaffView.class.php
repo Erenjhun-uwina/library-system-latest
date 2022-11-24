@@ -17,9 +17,4 @@ class StaffView extends StaffCtrl{
 
 
     }
-
-    public function select_data($where,$val){
-        return parent::select_data($where,$val);
-    }
-    // public function 
 }                                                              

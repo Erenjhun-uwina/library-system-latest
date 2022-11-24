@@ -8,14 +8,17 @@ if (!isset($_SESSION['acc_type'])) {
     $_SESSION['acc_type'] = "";
 }
 
+$acc_type = $_SESSION['acc_type'];
+$uri = $_SERVER['REQUEST_URI'];
 
 Router::get('/', function () {
-    header('location:./login/user');
+    header('location:./login/'.($_SESSION['acc_type']?:"user" ));
 });
 
 
+
 Router::get('/login', function () {
-    header('location:./login/user');
+    header('location:./login/'.($_SESSION['acc_type']?:"user" ));
 });
 
 Router::get("/login/user", function () {
@@ -33,7 +36,7 @@ Router::get("/login/admin", function () {
 
 
 Router::get('/home', function () {
-    header('location:home/user');
+    header('location:home/'.($_SESSION['acc_type']?:"user" ));
 });
 
 Router::get('/home/user', function () {
@@ -52,15 +55,28 @@ Router::get('/home/about_us',function(){
     view("home/about_us");
 });
 
+// var_dump($_SERVER['']);
+
+Router::get(substr($uri,strpos($uri,"/transaction")),function(){
+    if (!isset($_SESSION['id']) or $_SESSION['acc_type'] == 'user') {
+        header("location:../notfound");
+    }
+    view('home/transaction');
+});
+
+Router::get("/user/shelf",function(){
+    if (!isset($_SESSION['id']) or $_SESSION['acc_type'] != 'user') {
+        header("location:../notfound");
+    }
+    view("shelf/user_shelf");
+});
+
 Router::add_not_found_handler(function () {
-   
     view("notfound");
 });
 
 
 Router::run();
-
-
 
 // ##########################################
 function login_handler(string $acc)

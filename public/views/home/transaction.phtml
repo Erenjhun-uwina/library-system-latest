@@ -1,0 +1,79 @@
+<?php
+$view = $_SESSION['acc_type'] == 'admin' ? new AdminView : new StaffView;
+$bview = new BookView;
+$uview = new UserView;
+$tctrl = new TransactionCtrl;
+
+$code = $_GET['code'];
+$code = $code?:"blank_code";
+
+$transaction = $tctrl->select_data("Code=?", $code)->fetch_assoc();
+
+$book = ['Title' => 'invalid transaction code'];
+
+
+if ($transaction) {
+    $book = $bview->select_data("Id=?", $transaction["Book"])->fetch_assoc();
+    $borrower = $uview->select_data("Id=?", $transaction['Borrower'])->fetch_assoc();
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="../src/style/style.css" rel="stylesheet" type=" text/css">
+    <link rel="stylesheet" href="../src/style/transaction.css">
+    <meta charset="UTF-8">
+    <title>Admin home</title>
+    <link rel="stylesheet" href="../src/style/all.min.css">
+    <script src="../src/js/forms.js" defer></script>
+    <script src="../src/js/regis_forms.js" defer></script>
+    <script src="../src/js/logout.js" defer></script>
+    <script src="../src/js/book_prev.js" defer></script>
+    <script src="../src/js/search.js" defer></script>
+    <script src="../src/js/nav_btns.js" defer></script>
+</head>
+
+<body>
+    <?= get_temp("top_nav"); ?>
+
+    <main >
+
+        <?= get_temp("side_nav", ["view" => $view]); ?>
+
+        <section class="main_con">
+            
+            <?php
+
+            if (!$transaction) {
+                get_temp("invalid_transaction");
+            } else {
+
+
+                get_temp('transaction', [
+                    "book" => $book,
+                    "borrower" => $borrower,
+                    "code" => $code,
+                    "transaction" => $transaction
+                ]);
+            }
+
+            ?>
+
+        </section>
+
+    </main>
+    
+    <!-- hidden sections -->
+    <?php
+    get_temp('loading_pop');
+    get_temp("transaction_form");
+    get_temp("book_preview_change_pass_forms", ["view" => $view, "bview" => $bview]);
+    get_temp("user_book_forms");
+    if ($_SESSION['acc_type'] == 'admin') get_temp("staff_regis_form");
+    ?>
+</body>
+
+</html>
